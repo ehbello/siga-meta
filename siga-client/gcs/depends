@@ -1,0 +1,11 @@
+aufs-tools
+coreutils
+ethtool
+libnss-ldap
+libpam-ldap
+libpam-mount
+openssh-server
+pmount
+rwhod
+smbfs
+unattended-upgrades

@@ -1,0 +1,70 @@
+#!/bin/sh
+
+set -e
+
+LOG="logger -t pam_mount"
+
+MNTPT=$1;shift
+USER=$1;shift
+USERUID=$1;shift
+USERGID=$1;shift
+MORRALLA=$*
+
+#cifsmount /bin/sigamount  %(MNTPT) %(USER) %(USERUID) %(USERGID) %(before=\",\" OPTIONS)"
+
+if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
+	${LOG} "local user ${USER} exists. Nothing to mount..."
+	exit 0
+fi
+
+GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
+${LOG} "mounting ${USER} from ${GROUP} accounts..."
+
+case ${GROUP} in
+	tmp|temp|temporal)
+		## Temporal space for local client accounts
+		exec mount -t tmpfs -o size=100M,mode=0777 tmpfs ${MNTPT}
+		exit $?
+		;;
+	local)
+		URI="//server/${USER}"
+		;;
+	ull.es)
+		URI="//ddv.ccti.ull.es/${USER}/home"
+		;;
+	*)
+		URI="//${GROUP}.aulas.ull.es/${USER}"
+		;;
+esac
+
+#FULLPATH=""
+#for DIR in $(echo $MNTPT | sed "s|/||"); do
+#	FULLPATH="${FULLPATH}/${DIR}"
+#	if [ -d ${FULLPATH} ] && [ ${FULLPATH} != "/tmp" ]; then
+#		# FULLPATH must be created by pam_mount
+#		chown root:root ${FULLPATH}
+#		chmod 0751 ${FULLPATH}
+#	fi
+#done
+
+## The mountpoint only must be accesible by the user
+#if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
+#	chmod 0700 ${MNTPT}
+#fi
+
+exec mount -t cifs ${URI} ${MNTPT} -o "user=${USER},uid=${USERUID},gid=${USERGID}${MORRALLA}"
+
+DISKUSAGE=$(df -m ${MNTPT} | tail -1 | awk '{ print $4 }') # needs "dfree comand" in smb.conf at server
+
+if [ ${DISKUSAGE} == 0 ]; then
+	export KDE_HOME_READONLY="true"
+#	TMPDIR=/tmp/${GROUP}/${USER} ## It isn't usefull to umount later
+#	mkdir -p ${TMPDIR}
+#
+#	${LOG} "mounting tmpfs at ${TMPDIR}"
+#	exec mount -t tmpfs -o size=8M,mode=1777 tmpfs ${TMPDIR}
+#
+#	${LOG} "mounting aufs at ${MNTPT}"
+#	## It's very important to mount first a mount point with free disk space.
+#	exec mount -t aufs -o dirs=${TMPDIR}:${MNTPT} aufs ${MNTPT}
+fi

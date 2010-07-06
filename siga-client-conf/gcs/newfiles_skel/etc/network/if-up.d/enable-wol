@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# quit if we're called for the loopback
+if [ "$IFACE" = lo ]; then
+	exit 0
+fi
+
+/usr/sbin/ethtool -s $IFACE wol g

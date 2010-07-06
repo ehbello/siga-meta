@@ -1,0 +1,15 @@
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+SEEN_KEYS="libpam-mount/convert-xml-config"
+
+echo "Overriding ldap-auth-config debconf configuration..."
+db_set ldap-auth-config/override false
+db_fset ldap-auth-config/override seen true
+
+echo "Preseeding debconf keys..."
+for KEY in $SEEN_KEYS; do
+	db_fset $KEY seen true
+done
+
+db_go

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+LOG="logger -t pam_mount"
+
+MNTPT=$1;shift
+USER=$1;shift
+MORRALLA=$*
+
+sleep 10; ## Arreglo chungo para al KDM le de tiempo a tocar el .Xauthority antes de desmontar.
+
+#umount /bin/sigaumount  %(MNTPT) %(USER)
+
+GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
+${LOG} "umounting ${MNTPT} of ${USER}"
+
+
+## Avoid to delete important empty directories
+#touch /home/.directory /root/.directory
+#
+#if [ ${GROUP} != "local" ]; then
+#	TMPDIR=/tmp/${GROUP}/${USER}
+#	if [ -d ${TMPDIR} ]; then
+#		umount -lf ${TMPDIR}
+#		rmdir --parents ${TMPDIR}
+#	fi
+#fi
+
+umount -lf ${MNTPT} || ( ERR=$?; ${LOG} "WARNING: Couldn't umount ${MNTPT}"; exit ${ERR})
+#rmdir --parents ${MNTPT}
