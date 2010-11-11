@@ -10,17 +10,17 @@ author: Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.u
 priority: optional
 
 # Section
-section: siga
+section: metapackage
 
 # Descripción corta
-shortdesc: "Paquete de configuracion de un cliente SIGA."
+shortdesc: "Dummy package that installs the configuration for a SIGA Client."
 
 # Descipción larga, las lineas han de estar separadas por "\n "
-longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
+longdesc: "This package is only for a client in to a SIGA Classroom. \n WANING: Don't install at your home. \n It will crash your installation."
 
 # Versión del paquete
-version: 1.0~dev2
+version: 1.0~dev3
 
 # Cambios en esta versión
 changes:
-    - Deleted aufs useless and missing dependence.
+    - Added new dependences for name caching from ldap.

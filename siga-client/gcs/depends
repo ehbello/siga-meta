@@ -1,10 +1,12 @@
 coreutils
 ethtool
+libnss-db
 libnss-ldap
 libpam-ldap
 libpam-mount
+nscd
+nss-updatedb
 openssh-server
-pmount
 rwhod
 smbfs
 unattended-upgrades
