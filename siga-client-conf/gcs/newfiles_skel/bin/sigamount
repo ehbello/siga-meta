@@ -38,7 +38,7 @@ case ${GROUP} in
 esac
 
 #FULLPATH=""
-#for DIR in $(echo $MNTPT | sed "s|/||"); do
+#for DIR in $(echo $MNTPT | sed "s|/| |"); do
 #	FULLPATH="${FULLPATH}/${DIR}"
 #	if [ -d ${FULLPATH} ] && [ ${FULLPATH} != "/tmp" ]; then
 #		# FULLPATH must be created by pam_mount
