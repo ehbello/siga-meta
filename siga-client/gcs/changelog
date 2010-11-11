@@ -1,3 +1,10 @@
+siga-client (1.0~dev3) lucid; urgency=low
+
+  * Added new dependences for name caching from ldap.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 11 Nov 2010 17:05:38 +0000
+
+
 siga-client (1.0~dev2) lucid; urgency=low
 
   * Deleted aufs useless and missing dependence.
