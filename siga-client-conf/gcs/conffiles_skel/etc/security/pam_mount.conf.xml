@@ -128,7 +128,8 @@ antisocial, pam_mount will always set its own $PATH.
 -->
 <smbmount>sigamount %(MNTPT) %(USER) %(USERUID) %(USERGID) %(before=\",\" OPTIONS)</smbmount>
 
-<smbumount>smbumount %(MNTPT)</smbumount>
+<!--<smbumount>smbumount %(MNTPT)</smbumount>-->
+<smbumount>sigaumount %(MNTPT) %(USER)</smbumount>
 
 <ncpmount>ncpmount %(SERVER)/%(USER) %(MNTPT) -o
     "pass-fd=0,volume=%(VOLUME)%(before=\",\" OPTIONS)"</ncpmount>
@@ -147,9 +148,9 @@ antisocial, pam_mount will always set its own $PATH.
 volumes. May also break loopback mounts because loopback devices are not
 freed. Need to unmount mount point (not volume!) to support SMB mounts,
 etc.
-<umount>sigaumount %(MNTPT) %(USER)</umount>
--->
 <umount>umount %(MNTPT)</umount>
+-->
+<umount>sigaumount %(MNTPT) %(USER)</umount>
 
 
 <!-- On OpenBSD try "/usr/local/bin/mount_ehd" (included in pam_mount
@@ -374,8 +375,9 @@ When pam_mount is not used with "use_first_pass" or "try_first_pass" in
 the PAM configuration files (/etc/pam.d/), it will have to ask for a
 password. This is also the case if pam_mount is the first auth module
 in the block.
--->
 <msg-authpw>pam_mount password:</msg-authpw>
+-->
+<msg-authpw>password:</msg-authpw>
 
 <!--
 In case the 'session' PAM block does not have the password (e.g. on su

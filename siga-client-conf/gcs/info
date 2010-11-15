@@ -19,9 +19,11 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.0~dev3
+version: 1.0~dev4
 
 # Cambios en esta versión
 changes:
-    - Cleaned and updated the configuration.
-    - Preseeding debconf keys trough debconf-set-selections.
+    - Deleted old libnss-ldap.conf
+    - Forced to use a unique password when login to system.
+    - Using sigaumount when umount the resources.
+    - sigaumount contemplate the umount of non-mounted resources.
