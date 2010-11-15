@@ -19,8 +19,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.0~dev7
+version: 1.0~dev8
 
 # Cambios en esta versión
 changes:
-    - Rebuild from cleaned source code.
+    - Changed preseed to avoid that Debconf manages LDAP configuration.
