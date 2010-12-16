@@ -281,7 +281,7 @@ me without -jengelh), example (thanks John Knox):
 
 <volume user="*" fstype="cifs" server="dummy" path="%(USER)" mountpoint="~" options="nobrl,serverino,file_mode=0700,dir_mode=0700" />
 -->
-<volume user="*" fstype="smbfs" server="dummy" path="%(USER)" mountpoint="~" options="nobrl,serverino,file_mode=0700,dir_mode=0700,iocharset=utf8" />
+<volume user="*" fstype="smbfs" server="dummy" path="%(USER)" mountpoint="~" options="nobrl,serverino,file_mode=0700,dir_mode=0700,iocharset=utf8,nodfs" />
 
 
 <!--
