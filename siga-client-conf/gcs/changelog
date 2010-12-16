@@ -1,3 +1,48 @@
+siga-client-conf (1.0~dev9) lucid; urgency=low
+
+  * Forced to use UTF-8 at samba mount. (iocharset=utf8)
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 16 Dec 2010 17:23:14 +0000
+
+
+siga-client-conf (1.0~dev8) lucid; urgency=low
+
+  * Changed preseed to avoid that Debconf manages LDAP configuration.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 15 Nov 2010 21:13:17 +0000
+
+
+siga-client-conf (1.0~dev7) lucid; urgency=low
+
+  * Rebuild from cleaned source code.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 15 Nov 2010 20:47:59 +0000
+
+
+siga-client-conf (1.0~dev6) lucid; urgency=low
+
+  * Preseeding in preinst needs to embed the keys into the file.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 15 Nov 2010 19:43:50 +0000
+
+
+siga-client-conf (1.0~dev5) lucid; urgency=low
+
+  * Presseeding in preinst script instead of postinst works.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 15 Nov 2010 19:27:33 +0000
+
+
+siga-client-conf (1.0~dev4) lucid; urgency=low
+
+  * Deleted old libnss-ldap.conf
+  * Forced to use a unique password when login to system.
+  * Using sigaumount when umount the resources.
+  * sigaumount contemplate the umount of non-mounted resources.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 15 Nov 2010 18:55:55 +0000
+
+
 siga-client-conf (1.0~dev3) lucid; urgency=low
 
   * Cleaned and updated the configuration.

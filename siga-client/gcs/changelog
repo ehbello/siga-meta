@@ -1,3 +1,10 @@
+siga-client (1.0~dev4) lucid; urgency=low
+
+  * Rebuild from cleaned source code.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 15 Nov 2010 20:56:47 +0000
+
+
 siga-client (1.0~dev3) lucid; urgency=low
 
   * Added new dependences for name caching from ldap.
