@@ -1,3 +1,10 @@
+siga-client-conf (1.0~dev11) lucid; urgency=low
+
+  * Added compatibility support for older Samba Server versions disabling DFS paths.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 16 Dec 2010 20:02:01 +0000
+
+
 siga-client-conf (1.0~dev9) lucid; urgency=low
 
   * Forced to use UTF-8 at samba mount. (iocharset=utf8)
