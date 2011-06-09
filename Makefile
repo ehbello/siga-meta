@@ -3,18 +3,20 @@
 .SILENT:
 
 DEBTOOL ?= dpkg-buildpackage -rfakeroot
+STATUS_CMD ?= bzr st
 PKGNAME = $*
 DATE = $(shell date +"%b %d %T")
 
-.PHONY: all
+.PHONY: all status
 all: $(patsubst %/gcs,%.build,$(wildcard */gcs))
+status: $(patsubst %/gcs,%/status,$(wildcard */gcs))
 
-%.build: %/svgz %/debian/changelog
+%.build: %/debian/changelog
 	$(info [$(DATE)] $(PKGNAME): starting build process...)
 	(cd $(PKGNAME); $(DEBTOOL))
 	touch $(PKGNAME).build
 
-%/debian/changelog: %/gcs/info %/clean
+%/debian/changelog: %/gcs/info %/svgz
 	$(info [$(DATE)] $(PKGNAME): building debian files...)
 	(cd $(PKGNAME); gcs_build -S)
 
@@ -31,18 +33,22 @@ all: $(patsubst %/gcs,%.build,$(wildcard */gcs))
 		-exec gunzip '{}.gz' \; \
 		-exec rename 's/\.svgz$$/\.svg/' {} \;
 
-%/clean:
+%/clean: %/svg
 	$(info [$(DATE)] $(PKGNAME): cleanning useless files...)
 	-find $(PKGNAME) -iname "*.gcs" -delete
 	-rm -rf $(PKGNAME)/debian
 
-%/realclean: %/svg
+%/realclean: %/clean
 	$(info [$(DATE)] $(PKGNAME): removing all output files...)
 	-rm -f $(PKGNAME)*.build
 	-rm -f $(PKGNAME)*.dsc
 	-rm -f $(PKGNAME)*.changes
 	-rm -f $(PKGNAME)*.tar.gz
 	-rm -f $(PKGNAME)*.deb
+
+%/status:
+	$(info ~~~~~ $(PKGNAME) ~~~~~)
+	$(STATUS_CMD) $(PKGNAME)
 
 .PHONY: clean
 clean: $(patsubst %/gcs,%/clean,$(wildcard */gcs))
