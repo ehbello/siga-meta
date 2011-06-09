@@ -19,8 +19,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.0~dev13
+version: 1.0~dev14
 
 # Cambios en esta versión
 changes:
-    - Fixed sudoers permissions. File must be a file.
+    - Fixed sigamount script to support temporary accounts.

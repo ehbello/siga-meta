@@ -21,6 +21,10 @@ GROUP=`echo ${MNTPT} | cut -d "/" -f 3`
 ${LOG} "mounting ${USER} from ${GROUP} accounts..."
 
 case ${GROUP} in
+	${USER})
+		exec mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
+		exit $?
+		;;
 	tmp|temp|temporal)
 		## Temporal space for local client accounts
 		exec mount -t tmpfs -o size=100M,mode=0777 tmpfs ${MNTPT}
@@ -54,17 +58,7 @@ esac
 
 exec mount -t cifs ${URI} ${MNTPT} -o "user=${USER},uid=${USERUID},gid=${USERGID}${MORRALLA}"
 
-DISKUSAGE=$(df -m ${MNTPT} | tail -1 | awk '{ print $4 }') # needs "dfree comand" in smb.conf at server
-
-if [ ${DISKUSAGE} == 0 ]; then
-	export KDE_HOME_READONLY="true"
-#	TMPDIR=/tmp/${GROUP}/${USER} ## It isn't usefull to umount later
-#	mkdir -p ${TMPDIR}
-#
-#	${LOG} "mounting tmpfs at ${TMPDIR}"
-#	exec mount -t tmpfs -o size=8M,mode=1777 tmpfs ${TMPDIR}
-#
-#	${LOG} "mounting aufs at ${MNTPT}"
-#	## It's very important to mount first a mount point with free disk space.
-#	exec mount -t aufs -o dirs=${TMPDIR}:${MNTPT} aufs ${MNTPT}
+if [ $? != 0 ]; then
+	${LOG} "can't mount resource. Mounting on tmpfs..."
+	exec mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
 fi
