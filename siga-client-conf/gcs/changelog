@@ -1,3 +1,24 @@
+siga-client-conf (1.0.14) lucid; urgency=low
+
+  * Fixed sigamount script to support temporary accounts.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 03 Jun 2011 17:30:51 +0100
+
+
+siga-client-conf (1.0~dev13) lucid; urgency=low
+
+  * Fixed sudoers permissions. File must be a file.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 17 Feb 2011 14:15:38 +0000
+
+
+siga-client-conf (1.0~dev12) lucid; urgency=low
+
+  * Added access permisions to Domain Admins for sshd and sudo.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 17 Feb 2011 10:39:07 +0000
+
+
 siga-client-conf (1.0~dev11) lucid; urgency=low
 
   * Added compatibility support for older Samba Server versions disabling DFS paths.
