@@ -19,8 +19,9 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.0.14
+version: 1.0.15
 
 # Cambios en esta versión
 changes:
-    - Fixed sigamount script to support temporary accounts.
+    - Override /lib/udev/rules.d/75-persistent-net-generator.rules to avoid persistent interfaces.
+    - Added reset_persistent postscrit from siga-client package.
