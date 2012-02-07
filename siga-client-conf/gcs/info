@@ -26,3 +26,4 @@ changes:
     - Added environment variable for move user cache to a temporary directory.
     - Changed security mode to NTLMv2.
     - Specified _netdev option to cifs mounts for network resources.
+    - Try to fix temporary filesystem mounts.

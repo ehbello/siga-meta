@@ -22,12 +22,12 @@ ${LOG} "mounting ${USER} from ${GROUP} accounts..."
 
 case ${GROUP} in
 	${USER})
-		exec mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
+		mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
 		exit $?
 		;;
 	tmp|temp|temporal)
 		## Temporal space for local client accounts
-		exec mount -t tmpfs -o size=100M,mode=0777 tmpfs ${MNTPT}
+		mount -t tmpfs -o size=100M,mode=0777 tmpfs ${MNTPT}
 		exit $?
 		;;
 	local)
@@ -56,9 +56,7 @@ esac
 #	chmod 0700 ${MNTPT}
 #fi
 
-exec mount -t cifs ${URI} ${MNTPT} -o "user=${USER},uid=${USERUID},gid=${USERGID}${MORRALLA}"
-
-if [ $? != 0 ]; then
+if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},uid=${USERUID},gid=${USERGID}${MORRALLA}"; then
 	${LOG} "can't mount resource. Mounting on tmpfs..."
-	exec mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
+	mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
 fi
