@@ -24,3 +24,5 @@ version: 1.0.16
 # Cambios en esta versión
 changes:
     - Added environment variable for move user cache to a temporary directory.
+    - Changed security mode to NTLMv2.
+    - Specified _netdev option to cifs mounts for network resources.
