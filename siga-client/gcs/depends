@@ -1,5 +1,6 @@
 coreutils
 ethtool
+keyutils
 libnss-db
 libnss-ldap
 libpam-ldap

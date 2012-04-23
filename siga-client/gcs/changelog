@@ -1,3 +1,10 @@
+siga-client (1.0.5) oneiric; urgency=low
+
+  * Deleted reset_persistent script.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 03 Nov 2011 17:35:41 +0000
+
+
 siga-client (1.0.4) lucid; urgency=low
 
   * Rebuild from cleaned source code.

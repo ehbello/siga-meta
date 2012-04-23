@@ -1,3 +1,11 @@
+siga-client-conf (1.0.15) oneiric; urgency=low
+
+  * Override /lib/udev/rules.d/75-persistent-net-generator.rules to avoid persistent interfaces.
+  * Added reset_persistent postscrit from siga-client package.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 03 Nov 2011 17:34:50 +0000
+
+
 siga-client-conf (1.0.14) lucid; urgency=low
 
   * Fixed sigamount script to support temporary accounts.
