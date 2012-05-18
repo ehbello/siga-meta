@@ -34,7 +34,7 @@ case ${GROUP} in
 		URI="//server/${USER}"
 		;;
 	ull.es)
-		URI="//ddv.ccti.ull.es/${USER}/home"
+		URI="//ddv.ccti.ull.es/${USER}"
 		;;
 	*)
 		URI="//${GROUP}.aulas.ull.es/${USER}"

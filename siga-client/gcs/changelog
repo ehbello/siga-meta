@@ -1,3 +1,10 @@
+siga-client (1.0.6) oneiric; urgency=low
+
+  * Added keyutils as dependency.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 23 Apr 2012 13:17:13 +0100
+
+
 siga-client (1.0.5) oneiric; urgency=low
 
   * Deleted reset_persistent script.

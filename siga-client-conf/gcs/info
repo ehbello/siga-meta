@@ -19,11 +19,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.0.16
+version: 1.0.17
 
 # Cambios en esta versión
 changes:
-    - Added environment variable for move user cache to a temporary directory.
-    - Changed security mode to NTLMv2.
-    - Specified _netdev option to cifs mounts for network resources.
-    - Try to fix temporary filesystem mounts.
+    - Changed DDV url for ull.es mounts.

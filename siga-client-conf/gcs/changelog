@@ -1,3 +1,13 @@
+siga-client-conf (1.0.16) oneiric; urgency=low
+
+  * Added environment variable for move user cache to a temporary directory.
+  * Changed security mode to NTLMv2.
+  * Specified _netdev option to cifs mounts for network resources.
+  * Try to fix temporary filesystem mounts.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 23 Apr 2012 13:16:08 +0100
+
+
 siga-client-conf (1.0.15) oneiric; urgency=low
 
   * Override /lib/udev/rules.d/75-persistent-net-generator.rules to avoid persistent interfaces.
