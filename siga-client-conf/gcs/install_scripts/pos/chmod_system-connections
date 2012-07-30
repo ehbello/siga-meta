@@ -1,0 +1,3 @@
+if [ -d /etc/NetworkManager/system-connections/ ]; then
+	chmod 600 /etc/NetworkManager/system-connections/*
+fi
