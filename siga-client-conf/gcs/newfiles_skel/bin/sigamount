@@ -17,6 +17,24 @@ if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
 	exit 0
 fi
 
+${LOG} "creating mountpoint for user ${USER}..."
+mkdir -p ${mntpt}
+
+FULLPATH=""
+for DIR in $(echo $MNTPT | sed "s|/| |"); do
+	FULLPATH="${FULLPATH}/${DIR}"
+	if [ -d ${FULLPATH} ] && [ ${FULLPATH} != "/tmp" ]; then
+		# FULLPATH must be created by pam_mount
+		chown root:root ${FULLPATH}
+		chmod 0751 ${FULLPATH}
+	fi
+done
+
+# The mountpoint only must be accesible by the user
+if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
+	chmod 0700 ${MNTPT}
+fi
+
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
 ${LOG} "mounting ${USER} from ${GROUP} accounts..."
 
@@ -40,21 +58,6 @@ case ${GROUP} in
 		URI="//${GROUP}.aulas.ull.es/${USER}"
 		;;
 esac
-
-#FULLPATH=""
-#for DIR in $(echo $MNTPT | sed "s|/| |"); do
-#	FULLPATH="${FULLPATH}/${DIR}"
-#	if [ -d ${FULLPATH} ] && [ ${FULLPATH} != "/tmp" ]; then
-#		# FULLPATH must be created by pam_mount
-#		chown root:root ${FULLPATH}
-#		chmod 0751 ${FULLPATH}
-#	fi
-#done
-
-## The mountpoint only must be accesible by the user
-#if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
-#	chmod 0700 ${MNTPT}
-#fi
 
 if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},uid=${USERUID},gid=${USERGID}${MORRALLA}"; then
 	${LOG} "can't mount resource. Mounting on tmpfs..."

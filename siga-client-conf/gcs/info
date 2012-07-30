@@ -19,8 +19,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.0.17
+version: 1.0.18
 
 # Cambios en esta versión
 changes:
-    - Changed DDV url for ull.es mounts.
+    - Create mountpoint before mount because mkmountpoint only create the last level of path.
