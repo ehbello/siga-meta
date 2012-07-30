@@ -18,7 +18,7 @@ if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
 fi
 
 ${LOG} "creating mountpoint for user ${USER}..."
-mkdir -p ${mntpt}
+mkdir -p ${MNTPT}
 
 FULLPATH=""
 for DIR in $(echo $MNTPT | sed "s|/| |"); do

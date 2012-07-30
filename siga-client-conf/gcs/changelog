@@ -1,3 +1,10 @@
+siga-client-conf (1.0.18) precise; urgency=low
+
+  * Create mountpoint before mount because mkmountpoint only create the last level of path.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 30 Jul 2012 16:45:21 +0100
+
+
 siga-client-conf (1.0.17) oneiric; urgency=low
 
   * Changed DDV url for ull.es mounts.

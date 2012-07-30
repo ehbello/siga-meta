@@ -19,8 +19,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.0.18
+version: 1.0.19
 
 # Cambios en esta versión
 changes:
-    - Create mountpoint before mount because mkmountpoint only create the last level of path.
+    - Wrongly capitalized variable for MNTPT.
