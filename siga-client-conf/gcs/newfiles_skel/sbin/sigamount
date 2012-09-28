@@ -10,7 +10,7 @@ USERUID=$1;shift
 USERGID=$1;shift
 MORRALLA=$*
 
-#cifsmount /bin/sigamount  %(MNTPT) %(USER) %(USERUID) %(USERGID) %(before=\",\" OPTIONS)"
+#cifsmount /sbin/sigamount  %(MNTPT) %(USER) %(USERUID) %(USERGID) %(before=\",\" OPTIONS)"
 
 if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
 	${LOG} "local user ${USER} exists. Nothing to mount..."
@@ -50,6 +50,9 @@ case ${GROUP} in
 		;;
 	local)
 		URI="//server/${USER}"
+		;;
+	alumnado.ull.es)
+		URI="//aluhome.stic.ull.es/${USER}"
 		;;
 	ull.es)
 		URI="//ddv.ccti.ull.es/${USER}"

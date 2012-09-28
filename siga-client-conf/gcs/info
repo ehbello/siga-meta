@@ -19,8 +19,9 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.3.2
+version: 1.3.3
 
 # Cambios en esta versión
 changes:
-    - Added script to set right permissions for system-connections of NetworkManager.
+    - Added new map for alumnado.ull.es homes.
+    - Moved siga scripts to /sbin/
