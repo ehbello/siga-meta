@@ -19,8 +19,10 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.3.4
+version: 1.3.5
 
 # Cambios en esta versión
 changes:
-    - Fixed the name of suders include because ignores filenames that includes dot in it.
+    - Fixed permissions of parents for mountpoint.
+    - Added nodev to mount options.
+    - Added support for new directory schema for ULL servers.

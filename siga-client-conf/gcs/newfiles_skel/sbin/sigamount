@@ -21,7 +21,7 @@ ${LOG} "creating mountpoint for user ${USER}..."
 mkdir -p ${MNTPT}
 
 FULLPATH=""
-for DIR in $(echo $MNTPT | sed "s|/| |"); do
+for DIR in $(echo $MNTPT | tr "/" " "); do
 	FULLPATH="${FULLPATH}/${DIR}"
 	if [ -d ${FULLPATH} ] && [ ${FULLPATH} != "/tmp" ]; then
 		# FULLPATH must be created by pam_mount
