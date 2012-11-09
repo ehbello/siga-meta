@@ -1,3 +1,7 @@
 if [ -d /etc/NetworkManager/system-connections/ ]; then
 	chmod 600 /etc/NetworkManager/system-connections/*
 fi
+
+if [ -e /etc/sudoers.d/siga ]; then
+	chmod 440 /etc/suders.d/siga
+fi

@@ -1,3 +1,12 @@
+siga-client-conf (1.3.5) precise; urgency=low
+
+  * Fixed permissions of parents for mountpoint.
+  * Added nodev to mount options.
+  * Added support for new directory schema for ULL servers.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 08 Nov 2012 18:58:30 +0000
+
+
 siga-client-conf (1.3.4) precise; urgency=low
 
   * Fixed the name of suders include because ignores filenames that includes dot in it.
