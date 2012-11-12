@@ -1,2 +1,4 @@
-echo "Forcing to regenerate network udev rules..."
-rm -f /etc/udev/rules.d/*-persistent-net.rules
+if [ -e /etc/udev/rules.d/*-persistent-net.rules ]; then
+	echo "Forcing to regenerate network udev rules..."
+	rm -f /etc/udev/rules.d/*-persistent-net.rules
+fi
