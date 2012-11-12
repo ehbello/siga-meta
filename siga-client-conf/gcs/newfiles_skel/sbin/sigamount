@@ -17,6 +17,11 @@ if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
 	exit 0
 fi
 
+if mount | grep -q "on ${MNTPT}"; then
+	${LOG} "mountpoint for ${MNTPT} already mounted. Skipping."
+	exit 0
+fi
+
 ${LOG} "creating mountpoint for user ${USER}..."
 mkdir -p ${MNTPT}
 

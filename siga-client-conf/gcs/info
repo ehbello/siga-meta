@@ -19,9 +19,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.3.7
+version: 1.3.8
 
 # Cambios en esta versión
 changes:
-    - Fixed set of permissions for siga configuration.
-    - Removed empty persistent rules of udev.
+    - Avoid to mount already mounted mountpoints.
