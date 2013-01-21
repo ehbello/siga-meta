@@ -8,7 +8,7 @@ MNTPT=$1;shift
 USER=$1;shift
 MORRALLA=$*
 
-if ! mount | grep -q "on ${MNTPT}"; then
+if ! mount | grep -q "on ${MNTPT%/}"; then
 	${LOG} "${MNTPT} is not mounted. Nothing to do..."
 	exit 0
 fi

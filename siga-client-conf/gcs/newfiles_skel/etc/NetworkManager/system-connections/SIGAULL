@@ -1,0 +1,15 @@
+
+[connection]
+id=SIGAULL
+uuid=8a70be68-9ca9-4886-bc00-b976bcea2bbf
+type=802-11-wireless
+
+[802-11-wireless]
+ssid=SIGAULL
+mode=infrastructure
+
+[ipv6]
+method=ignore
+
+[ipv4]
+method=auto

@@ -67,7 +67,7 @@ case ${GROUP} in
 		;;
 esac
 
-if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},uid=${USERUID},gid=${USERGID}${MORRALLA}"; then
+if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
 	${LOG} "can't mount resource. Mounting on tmpfs..."
 	mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
 fi

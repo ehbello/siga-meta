@@ -279,9 +279,8 @@ me without -jengelh), example (thanks John Knox):
     <volume fstype="smbfs" server="viper" path="%(USER)"
         mountpoint="~" options="dmask=0751,workgroup=WINDOWS_DOMAIN" />
 
-<volume user="*" fstype="cifs" server="dummy" path="%(USER)" mountpoint="~" options="nobrl,serverino,file_mode=0700,dir_mode=0700" />
 -->
-<volume user="*" fstype="smbfs" server="dummy" path="%(USER)" mountpoint="~" options="_netdev,serverino,file_mode=0700,dir_mode=0700,iocharset=utf8,nobrl,nodfs,nodev,sec=ntlmv2" />
+<volume user="*" fstype="cifs" server="dummy" path="%(USER)" mountpoint="~" />
 
 <!--
 Linux encrypted home directory examples, using dm_crypt:
