@@ -5,4 +5,4 @@ if [ "$IFACE" = lo ]; then
 	exit 0
 fi
 
-/usr/sbin/ethtool -s $IFACE wol g
+ethtool -s $IFACE wol g
