@@ -67,6 +67,11 @@ case ${GROUP} in
 		;;
 esac
 
+# Check if FSCache is available in kernel
+if egrep -q "CONFIG_(CIFS_)?FSCACHE=y" /boot/config-`uname -r` || lsmod | grep -q fscache; then
+	MORRALLA=",fsc${MORRALLA}"
+fi
+
 if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
 	${LOG} "can't mount resource. Mounting on tmpfs..."
 	mount -t tmpfs -o size=100M,mode=0777 tmpfs ${MNTPT}
