@@ -19,8 +19,9 @@ shortdesc: "Dummy package that installs the configuration for a SIGA Client."
 longdesc: "This package is only for a client in to a SIGA Classroom. \n WANING: Don't install at your home. \n It will crash your installation."
 
 # Versión del paquete
-version: 1.3.17
+version: 1.3.16
 
 # Cambios en esta versión
 changes:
     - Added linux-siga-client dependency to replace linux-generic in the system.
+    - Forced to depend on the same version of siga-client-conf.
