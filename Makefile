@@ -55,7 +55,7 @@ notreleased: $(patsubst %/gcs,%/notreleased,$(wildcard */gcs))
 
 %/notreleased:
 	if ! grep -q "($(shell awk '$$1 == "version:" { print $$2 }' $(PKGNAME)/gcs/info))" $(PKGNAME)/gcs/changelog; then \
-		echo $(PKGNAME) not notreleased ; \
+		echo $(PKGNAME) not released ; \
 	fi
 
 %/commit: %/clean

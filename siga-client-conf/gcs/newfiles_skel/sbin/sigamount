@@ -68,7 +68,9 @@ case ${GROUP} in
 esac
 
 # Check if FSCache is available in kernel
-if egrep -q "CONFIG_(CIFS_)?FSCACHE=y" /boot/config-`uname -r` || lsmod | grep -q fscache; then
+if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
+ ( egrep -q "^ *CONFIG_FSCACHE=y" /boot/config-`uname -r` || \
+ ( egrep -q "^ *CONFIG_FSCACHE=m" /boot/config-`uname -r` && lsmod | grep -q fscache ) ); then
 	MORRALLA=",fsc${MORRALLA}"
 fi
 
