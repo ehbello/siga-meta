@@ -1,3 +1,17 @@
+siga-client (1.3.20) precise; urgency=low
+
+  * Added conflicts to force uninstall of linux-siga-client.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 19 Jun 2013 16:27:27 +0100
+
+
+siga-client (1.3.19) precise; urgency=low
+
+  * Reverted linux-siga-client dependency.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 19 Jun 2013 16:22:14 +0100
+
+
 siga-client (1.3.18) precise; urgency=low
 
   * Bump.
