@@ -13,16 +13,16 @@ MORRALLA=$*
 #cifsmount /sbin/sigamount  %(MNTPT) %(USER) %(USERUID) %(USERGID) %(before=\",\" OPTIONS)"
 
 if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
-	${LOG} "local user ${USER} exists. Nothing to mount..."
+	${LOG} "local user exists. Nothing to mount"
 	exit 0
 fi
 
-if mount | grep -q "on ${MNTPT}"; then
-	${LOG} "mountpoint for ${MNTPT} already mounted. Skipping."
+if mountpoint -q ${MNTPT}; then
+	${LOG} "[${USER}] mountpoint ${MNTPT} already mounted. Skipping."
 	exit 0
 fi
 
-${LOG} "creating mountpoint for user ${USER}..."
+${LOG} "[${USER}] creating directory structure of mountpoint"
 mkdir -p ${MNTPT}
 
 FULLPATH=""
@@ -38,10 +38,10 @@ done
 # The mountpoint only must be accesible by the user
 if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
 	chmod 0700 ${MNTPT}
+	chown ${USERUID}:${USERGID} ${MNTPT}
 fi
 
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
-${LOG} "mounting ${USER} from ${GROUP} accounts..."
 
 case ${GROUP} in
 	${USER})
@@ -62,10 +62,17 @@ case ${GROUP} in
 	ull.es)
 		URI="//ddv.ccti.ull.es/${USER}"
 		;;
+	siga*.stic.ull.es)
+		URI="//${GROUP}/${USER}"
+		REMOTE=true
+		;;
 	*)
 		URI="//${GROUP}.aulas.ull.es/${USER}"
 		;;
 esac
+
+
+${LOG} "[${USER}@${URI}] mounting resource to ${MNTPT}"
 
 # Check if FSCache is available in kernel
 if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
@@ -74,7 +81,45 @@ if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
 	MORRALLA=",fsc${MORRALLA}"
 fi
 
-if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
-	${LOG} "can't mount resource. Mounting on tmpfs..."
-	mount -t tmpfs -o size=100M,mode=0777 tmpfs ${MNTPT}
+if [ -n "${REMOTE}" ]; then
+		REMOTE_DIR=/tmp/${USER}-remote
+		LOCAL_DIR=/tmp/${USER}-local
+		DESKTOP_DIR=Escritorio
+		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR}
+		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR}
+
+		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=ULL/${USER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+			${LOG} "[${USER}@${URI}] can't mount resource. Mounting on tmpfs"
+			mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
+			exit 1
+		fi
+
+		# first branch is writable and remaining are readonly by default.
+		${LOG} "[${USER}@${URI}] merging local and remote directories"
+		mount -t aufs -o dirs=${LOCAL_DIR}:${REMOTE_DIR}/private -o udba=reval none ${MNTPT}
+		
+		# mounting bind of Desktop directory
+		${LOG} "[${USER}@${URI}] enabling write of remote Desktop directory"
+		mkdir -p ${REMOTE_DIR}/private/${DESKTOP_DIR} ${LOCAL_DIR}/${DESKTOP_DIR}
+		chown ${USERID}:${USERGID} ${REMOTE_DIR}/private/${DESKTOP_DIR} ${LOCAL_DIR}/${DESKTOP_DIR}
+		mount -o bind ${REMOTE_DIR}/private/${DESKTOP_DIR} ${MNTPT}/${DESKTOP_DIR}
+
+		# The mountpoint only must be accesible by the user
+		if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
+			${LOG} "[${USER}@${URI}] enforcing permissions of mountpoint"
+			chmod 0700 ${MNTPT}
+			chown ${USERUID}:${USERGID} ${MNTPT}
+		fi
+
+		${LOG} "[${USER}@${URI}] Success."
+
+		exit 0
 fi
+
+if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+	${LOG} "[${USER}@${URI}] can't mount resource. Mounting on tmpfs"
+	mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
+	exit 1
+fi
+
+${LOG} "[${USER}@${URI}] Success."
