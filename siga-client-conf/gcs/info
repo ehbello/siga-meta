@@ -20,9 +20,9 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 1.3.21
+version: 1.3.22
 
 # Cambios en esta versión
 changes:
-    - The mounting scripts now recognize new type of homeDirectory attribute for siga*.stic.ull.es
-    - The name was no longer gets from DHCP server.
+    - Added syncronization of Documents directory for siga*.stic.ull.es users
+    - Fixed sigaumount script to continue unmounting when mountpoint does not exists.

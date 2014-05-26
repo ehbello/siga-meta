@@ -13,7 +13,7 @@ MORRALLA=$*
 #cifsmount /sbin/sigamount  %(MNTPT) %(USER) %(USERUID) %(USERGID) %(before=\",\" OPTIONS)"
 
 if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
-	${LOG} "local user exists. Nothing to mount"
+	${LOG} "[${USER}] local user exists. Nothing to mount"
 	exit 0
 fi
 
@@ -85,6 +85,7 @@ if [ -n "${REMOTE}" ]; then
 		REMOTE_DIR=/tmp/${USER}-remote
 		LOCAL_DIR=/tmp/${USER}-local
 		DESKTOP_DIR=Escritorio
+		DOCUMENTS_DIR=Documentos
 		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR}
 		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR}
 
@@ -94,15 +95,27 @@ if [ -n "${REMOTE}" ]; then
 			exit 1
 		fi
 
+		# check if remote directories exists before bind
+		for DIR in ${DESKTOP_DIR} ${DOCUMENTS_DIR}; do	
+			if [ -e ${REMOTE_DIR}/private/${DIR} ] && [ ! -d ${REMOTE_DIR}/private/${DIR} ]; then
+				mv ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}
+			fi
+			mkdir -p ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
+			chown ${USERID}:${USERGID} ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
+			if [ -e ${LOCAL_DIR}/${DIR} ] && [ ! -d ${LOCAL_DIR}/${DIR} ]; then
+				mv ${LOCAL_DIR}/${DIR} ${REMOTE_DIR}/private/${DIR}
+			fi
+		done
+
 		# first branch is writable and remaining are readonly by default.
 		${LOG} "[${USER}@${URI}] merging local and remote directories"
 		mount -t aufs -o dirs=${LOCAL_DIR}:${REMOTE_DIR}/private -o udba=reval none ${MNTPT}
 		
-		# mounting bind of Desktop directory
-		${LOG} "[${USER}@${URI}] enabling write of remote Desktop directory"
-		mkdir -p ${REMOTE_DIR}/private/${DESKTOP_DIR} ${LOCAL_DIR}/${DESKTOP_DIR}
-		chown ${USERID}:${USERGID} ${REMOTE_DIR}/private/${DESKTOP_DIR} ${LOCAL_DIR}/${DESKTOP_DIR}
-		mount -o bind ${REMOTE_DIR}/private/${DESKTOP_DIR} ${MNTPT}/${DESKTOP_DIR}
+		# mounting bind of directories
+		for DIR in ${DESKTOP_DIR} ${DOCUMENTS_DIR}; do	
+			${LOG} "[${USER}@${URI}] enabling write of remote ${DIR} directory"
+			mount -o bind ${REMOTE_DIR}/private/${DIR} ${MNTPT}/${DIR}
+		done
 
 		# The mountpoint only must be accesible by the user
 		if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then

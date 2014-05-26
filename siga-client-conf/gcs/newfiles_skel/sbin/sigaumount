@@ -8,10 +8,10 @@ MNTPT=$1;shift
 USER=$1;shift
 MORRALLA=$*
 
-if ! mountpoint -q ${MNTPT}; then
-	${LOG} "${MNTPT} is not mounted. Nothing to do..."
-	exit 0
-fi
+#if ! mountpoint -q ${MNTPT}; then
+#	${LOG} "${MNTPT} is not mounted. Nothing to do..."
+#	exit 0
+#fi
 
 ${LOG} "[${USER}] waiting 10 seconds to logout..."
 sleep 10; ## Arreglo chungo para al KDM le de tiempo a tocar el .Xauthority antes de desmontar.
@@ -32,10 +32,10 @@ touch /home/.directory /root/.directory
 #	fi
 #fi
 
-for DIR in ${MNTPT}/Escritorio ${MNTPT} /tmp/${USER}-remote; do
-	if mountpoint -q ${DIR}; then
+for DIR in ${MNTPT}/Documentos ${MNTPT}/Escritorio ${MNTPT} /tmp/${USER}-remote; do
+#	if mountpoint -q ${DIR}; then
 		umount -lf ${DIR} || ${LOG} "[${USER}] WARNING: Couldn't umount ${DIR}"
-	fi
+#	fi
 done
 rmdir --parents ${MNTPT}
 ${LOG} "[${USER}] Success."
