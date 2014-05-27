@@ -24,9 +24,9 @@ openssh-server  ssh/encrypted_host_key_but_no_keygen    note
 # Reconfigure LDAP with debconf?
 ldap-auth-config        ldap-auth-config/move-to-debconf        boolean true
 # LDAP server Uniform Resource Identifier:
-ldap-auth-config        ldap-auth-config/ldapns/ldap-server     string  ldap://server/
+ldap-auth-config        ldap-auth-config/ldapns/ldap-server     string  ldaps://ldaps.stic.ull.es/
 # Distinguished name of the search base:
-ldap-auth-config        ldap-auth-config/ldapns/base-dn string  dc=siga,dc=es
+ldap-auth-config        ldap-auth-config/ldapns/base-dn string  dc=ull,dc=es
 # Should debconf manage LDAP configuration?
 ldap-auth-config        ldap-auth-config/override       boolean false
 # LDAP version to use:
