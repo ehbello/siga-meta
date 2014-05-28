@@ -7,7 +7,7 @@ libnss-ldap
 libpam-ldap
 libpam-mount
 #linux-siga-client
-linux-generic
+linux-image-generic
 nscd
 nss-updatedb
 openssh-server
