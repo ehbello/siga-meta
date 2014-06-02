@@ -20,9 +20,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 2.3.1
+version: 2.3.2
 
 # Cambios en esta versión
 changes:
-    - Changes ldap server by ldapsiga.stic.ull.es and openldap.stic.ull.es
-    - Added apt pinning configuration to self-priorize over older versions.
+    - Changed sudoers permissons for 'adminsbecasiga' and 'becasiga' admin groups.

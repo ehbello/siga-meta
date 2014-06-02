@@ -1,1 +1,2 @@
-%Domain\ Admins ALL=(ALL) ALL
+%adminsbecasiga ALL=(ALL) ALL
+%becasiga ALL=(ALL) ALL
