@@ -1,3 +1,10 @@
+siga-client (2.3.1) precise; urgency=low
+
+  * Bump to the new version.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Tue, 27 May 2014 18:31:55 +0100
+
+
 siga-client (1.3.22) precise; urgency=low
 
   * Bump to the new version.

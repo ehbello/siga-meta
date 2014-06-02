@@ -1,3 +1,11 @@
+siga-client-conf (2.3.1) precise; urgency=low
+
+  * Changes ldap server by ldapsiga.stic.ull.es and openldap.stic.ull.es
+  * Added apt pinning configuration to self-priorize over older versions.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Tue, 27 May 2014 18:32:36 +0100
+
+
 siga-client-conf (1.3.22) precise; urgency=low
 
   * Added syncronization of Documents directory for siga*.stic.ull.es users
