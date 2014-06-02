@@ -1,3 +1,10 @@
+siga-client-conf (2.3.3) precise; urgency=low
+
+  * Filtered PAM access by 'ou=srv_siga'
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 02 Jun 2014 18:32:02 +0100
+
+
 siga-client-conf (2.3.2) precise; urgency=low
 
   * Changed sudoers permissons for 'adminsbecasiga' and 'becasiga' admin groups.
