@@ -20,9 +20,8 @@ shortdesc: "Paquete de configuracion de un cliente SIGA."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 2.3.2
+version: 2.3.3
 
 # Cambios en esta versión
 changes:
-    - Changed sudoers permissons for 'adminsbecasiga' and 'becasiga' admin groups.
-    - Deleted apt pinning configuration that priorizes over older versions.
+    - Filtered PAM access by 'ou=srv_siga'

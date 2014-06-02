@@ -1,3 +1,11 @@
+siga-client-conf (2.3.2) precise; urgency=low
+
+  * Changed sudoers permissons for 'adminsbecasiga' and 'becasiga' admin groups.
+  * Deleted apt pinning configuration that priorizes over older versions.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 02 Jun 2014 15:06:01 +0100
+
+
 siga-client-conf (2.3.1) precise; urgency=low
 
   * Changes ldap server by ldapsiga.stic.ull.es and openldap.stic.ull.es
