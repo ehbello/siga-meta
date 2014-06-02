@@ -25,3 +25,4 @@ version: 2.3.2
 # Cambios en esta versión
 changes:
     - Changed sudoers permissons for 'adminsbecasiga' and 'becasiga' admin groups.
+    - Deleted apt pinning configuration that priorizes over older versions.
