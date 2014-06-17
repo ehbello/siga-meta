@@ -1,3 +1,13 @@
+siga-client-preseeds (2.3.5) precise; urgency=low
+
+  * Renamed from siga-client-conf.
+  * Moved all non-debconf configurations to siga-client package.
+  * Load preseeds from /usr/share/siga-client-preseeds/ directory.
+  * Splitted preseeds in a couple of files.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Tue, 17 Jun 2014 21:58:29 +0100
+
+
 siga-client-conf (2.3.4) precise; urgency=low
 
   * Bump to new version.
