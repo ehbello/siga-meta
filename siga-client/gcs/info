@@ -19,8 +19,12 @@ shortdesc: "Dummy package that installs the configuration for a SIGA Client."
 longdesc: "This package is only for a client in to a SIGA Classroom. \n WANING: Don't install at your home. \n It will crash your installation."
 
 # Versión del paquete
-version: 2.3.4
+version: 2.3.5
 
 # Cambios en esta versión
 changes:
-    - Replaces 'linux-generic' by 'linux-image-generic' at dependencies.
+    - Moved all non-debconf configurations from siga-client-conf.
+    - Added 'ufw' to dependencies.
+    - Configures a default firewall to allow only OpenSSH and connections from its network.
+    - Moved 'cachefilesd' from depends to predepends.
+    - Allowed groups 'adminsbecasiga' and 'becasiga' to connect trough ssh.

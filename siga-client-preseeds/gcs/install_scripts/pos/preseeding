@@ -1,0 +1,4 @@
+echo "Preseeding debconf keys..."
+for PRESEED in /usr/share/siga-client-preseeds/*.preseed; do
+	debconf-set-selections -u ${PRESEED}
+done

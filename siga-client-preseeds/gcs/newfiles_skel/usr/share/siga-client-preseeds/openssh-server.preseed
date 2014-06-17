@@ -1,0 +1,8 @@
+# ¿Desea correr el riesgo de matar las sesiones SSH activas?
+openssh-server	ssh/use_old_init_script	boolean	true
+# Se regenerarán las claves vulnerables del sistema
+openssh-server	ssh/vulnerable_host_keys	note	
+# Nueva clave de sistema obligatoria
+openssh-server	ssh/encrypted_host_key_but_no_keygen	note	
+# ¿Desea deshabilitar la autenticación basada en desafío-respuesta?
+openssh-server	ssh/disable_cr_auth	boolean	false

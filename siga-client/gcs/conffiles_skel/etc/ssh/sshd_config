@@ -2,7 +2,7 @@
 # See the sshd_config(5) manpage for details
 
 # Security Policy to deny access to common accounts
-AllowGroups Domain?Admins admin
+AllowGroups admin adminsbecasiga becasiga
 
 # What ports, IPs and protocols we listen for
 Port 22

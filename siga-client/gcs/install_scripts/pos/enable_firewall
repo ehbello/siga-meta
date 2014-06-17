@@ -1,0 +1,9 @@
+ufw --force reset
+ufw default deny incoming
+ufw allow from 10.219.30.254 to any app OpenSSH
+ufw enable
+
+IFACES=$(ip -4 addr show | grep -v inet | sed 's/: / /g' | cut -d " " -f 2)
+for IFACE in ${IFACES}; do
+	ip -4 addr show $IFACE | awk '$1 == "inet" { print $2 }' | xargs -L 1 ipcalc -b | awk '$1 == "Network:" { print "allow in on '$IFACE' from "$2" to any app OpenSSH" }' | xargs -L 1 ufw
+done

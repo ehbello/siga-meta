@@ -1,1 +1,6 @@
-siga-client-conf (= ${binary:Version})
+cachefilesd
+ipcalc
+iproute
+siga-client-preseeds (= ${binary:Version})
+ufw
+upstart

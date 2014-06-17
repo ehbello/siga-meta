@@ -1,0 +1,30 @@
+
+# YAML 1.1
+
+# Nombre del paquete (minúsculas-separado-con-guiones)
+name: siga-client-preseeds
+
+# Autor
+author: Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>
+
+# Priority
+priority: optional
+
+# Section
+section: siga
+
+# Descripción corta
+shortdesc: "Contents preseeds for siga-client package."
+
+# Descipción larga, las lineas han de estar separadas por "\n "
+longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
+
+# Versión del paquete
+version: 2.3.5
+
+# Cambios en esta versión
+changes:
+    - Renamed from siga-client-conf.
+    - Moved all non-debconf configurations to siga-client package.
+    - Load preseeds from /usr/share/siga-client-preseeds/ directory.
+    - Splitted preseeds in a couple of files.

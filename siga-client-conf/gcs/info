@@ -11,17 +11,17 @@ author: Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.u
 priority: optional
 
 # Section
-section: siga
+section: oldlibs
 
 # Descripción corta
-shortdesc: "Paquete de configuracion de un cliente SIGA."
+shortdesc: "transitional dummy package"
 
 # Descipción larga, las lineas han de estar separadas por "\n "
-longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
+longdesc: "This is a transitional dummy package. It can safely be removed."
 
 # Versión del paquete
-version: 2.3.4
+version: 2.3.5
 
 # Cambios en esta versión
 changes:
-    - Bump to new version.
+    - Renamed to siga-client-preseeds.

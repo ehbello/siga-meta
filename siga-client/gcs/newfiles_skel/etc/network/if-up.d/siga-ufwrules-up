@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# description "Adds a firewall rule to allow SSH connections from the network interface when it goes on."
+# author "Enrique Hernández Bello <quique@osl.ull.es>"
+
+set -e
+
+ip -4 addr show $IFACE | awk '$1 == "inet" { print $2 }' | xargs -L 1 ipcalc -b | awk '$1 == "Network:" { print "allow in on '$IFACE' from "$2" to any app OpenSSH" }' | xargs -L 1 /usr/sbin/ufw
