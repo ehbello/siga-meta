@@ -1,0 +1,7 @@
+APT
+{
+  NeverAutoRemove
+  {
+	"^siga-client$";
+  };
+};
