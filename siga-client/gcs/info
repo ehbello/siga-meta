@@ -24,3 +24,4 @@ version: 2.3.6
 # Cambios en esta versión
 changes:
     - Protected siga-client package to never autoremove. 
+    - Added CUPSd configuration to allow permissions to SIGA administrators.

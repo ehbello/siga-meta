@@ -1,0 +1,2 @@
+wine-systemwide-conf	wine-systemwide-conf/no_configuration	boolean	true
+wine-systemwide-conf	wine-systemwide-conf/purge_installation	boolean	true

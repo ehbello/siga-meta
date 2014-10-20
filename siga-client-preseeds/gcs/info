@@ -20,11 +20,9 @@ shortdesc: "Contents preseeds for siga-client package."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 2.3.5
+version: 2.3.6
 
 # Cambios en esta versión
 changes:
-    - Renamed from siga-client-conf.
-    - Moved all non-debconf configurations to siga-client package.
-    - Load preseeds from /usr/share/siga-client-preseeds/ directory.
-    - Splitted preseeds in a couple of files.
+    - Added preseeds for wine-systemwide-conf package.
+    - Now set the 'seen' flag when preseeding values

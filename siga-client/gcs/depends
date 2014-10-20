@@ -12,3 +12,4 @@ openssh-server
 rwhod
 smbfs
 unattended-upgrades
+wine-systemwide-conf
