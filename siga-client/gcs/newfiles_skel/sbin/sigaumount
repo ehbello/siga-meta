@@ -21,8 +21,14 @@ sleep 10; ## Arreglo chungo para al KDM le de tiempo a tocar el .Xauthority ante
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
 ${LOG} "[${USER}] umounting resources"
 
+for DIR in ${MNTPT}/Documentos ${MNTPT}/Escritorio ${MNTPT} /tmp/${USER}-remote; do
+#	if mountpoint -q ${DIR}; then
+		umount -lf ${DIR} || ${LOG} "[${USER}] WARNING: Couldn't umount ${DIR}"
+#	fi
+done
+
 ## Avoid to delete important empty directories
-touch /home/.directory /root/.directory
+touch /home/.directory /root/.directory || true
 
 #if [ ${GROUP} != "local" ]; then
 #	TMPDIR=/tmp/${GROUP}/${USER}
@@ -32,10 +38,5 @@ touch /home/.directory /root/.directory
 #	fi
 #fi
 
-for DIR in ${MNTPT}/Documentos ${MNTPT}/Escritorio ${MNTPT} /tmp/${USER}-remote; do
-#	if mountpoint -q ${DIR}; then
-		umount -lf ${DIR} || ${LOG} "[${USER}] WARNING: Couldn't umount ${DIR}"
-#	fi
-done
-rmdir --parents ${MNTPT}
+rmdir --parents ${MNTPT} --ignore-fail-on-non-empty
 ${LOG} "[${USER}] Success."

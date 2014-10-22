@@ -25,3 +25,4 @@ version: 2.3.6
 changes:
     - Protected siga-client package to never autoremove. 
     - Added CUPSd configuration to allow permissions to SIGA administrators.
+    - Ignore each rmdir failure when a directory is non-empty in sigaumount
