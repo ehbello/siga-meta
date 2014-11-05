@@ -41,8 +41,9 @@ notreleased: $(patsubst %/gcs,%/notreleased,$(wildcard */gcs))
 	-find $(PKGNAME) -iname "*.~?~" -delete
 	-rm -rf $(PKGNAME)/debian
 
-%/realclean: %/clean
+%/fullclean: %/clean
 	$(info [$(DATE)] $(PKGNAME): removing all output files...)
+	bzr revert $(PKGNAME)/gcs/changelog
 	-rm -f $(PKGNAME)*.build
 	-rm -f $(PKGNAME)*.dsc
 	-rm -f $(PKGNAME)*.changes
@@ -66,6 +67,9 @@ notreleased: $(patsubst %/gcs,%/notreleased,$(wildcard */gcs))
 	bzr ci $(PKGNAME) -F $(TMPFILE)
 	-rm -f $(TMPFILE)
 
+uncommit:
+	bzr uncommit
+
 commit: clean
 	bzr diff */gcs/changelog  | grep '^+.*urgency=' | sed -e 's/\(.* (.*)\).*/\1/g' -e 's/^+/    - /g' -e '1s/.*/Not released packages:\n&/' | tee $(TMPFILE)
 	bzr diff */gcs/info | grep "^+" | sed -e 's#+++ \(.*\)/gcs/info.*#\n\1:#g' -e 's#^+version: \(.*\)#(New version: \1)#' -e 's#^+##' | sed '1d' | tee -a $(TMPFILE)
@@ -74,9 +78,11 @@ commit: clean
 	bzr ci -x Makefile -F $(TMPFILE)
 	-rm -f $(TMPFILE)
 
+recommit: fullclean uncommit commit
+
 .PHONY: clean
 clean: $(patsubst %/gcs,%/clean,$(wildcard */gcs))
 
-.PHONY: realclean
-realclean: $(patsubst %/gcs,%/realclean,$(wildcard */gcs)) clean
+.PHONY: fullclean
+fullclean: $(patsubst %/gcs,%/fullclean,$(wildcard */gcs)) clean
 

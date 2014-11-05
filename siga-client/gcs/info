@@ -28,3 +28,4 @@ changes:
     - Ignore each rmdir failure when a directory is non-empty in sigaumount
     - Enabled CUPSd automatic remote printer detection.
     - Fixed Teachers / PASS accounts compatibility for java applications.
+    - Replaced nss_ldap/pam_ldap/nscd/ by sssd.

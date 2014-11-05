@@ -1,7 +1,0 @@
-#
-# /etc/pam.d/common-auth - authentication settings common to all services
-#
-auth    required        pam_mount.so
-auth    sufficient      pam_ldap.so use_first_pass
-auth    required        pam_unix.so nullok_secure use_first_pass
-

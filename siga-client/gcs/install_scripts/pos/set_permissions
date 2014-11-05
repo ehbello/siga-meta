@@ -5,3 +5,7 @@ fi
 if [ -e /etc/sudoers.d/siga ]; then
 	chmod 440 /etc/sudoers.d/siga
 fi
+
+if [ -e /etc/sssd/sssd.conf ]; then
+	chmod 600 /etc/sssd/sssd.conf
+fi
