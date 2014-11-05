@@ -29,3 +29,4 @@ changes:
     - Enabled CUPSd automatic remote printer detection.
     - Fixed Teachers / PASS accounts compatibility for java applications.
     - Replaced nss_ldap/pam_ldap/nscd/ by sssd.
+    - Disable kernel hung task timeout.
