@@ -109,7 +109,7 @@ if [ -n "${REMOTE}" ]; then
 
 		# first branch is writable and remaining are readonly by default.
 		${LOG} "[${USER}@${URI}] merging local and remote directories"
-		mount -t aufs -o dirs=${LOCAL_DIR}:${REMOTE_DIR}/private -o udba=reval none ${MNTPT}
+		mount -t overlayfs -o lowerdir=${REMOTE_DIR}/private,upperdir=${LOCAL_DIR} overlayfs ${MNTPT}
 		
 		# mounting bind of directories
 		for DIR in ${DESKTOP_DIR} ${DOCUMENTS_DIR}; do	
