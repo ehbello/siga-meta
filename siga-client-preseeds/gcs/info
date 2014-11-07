@@ -26,3 +26,5 @@ version: 2.3.6
 changes:
     - Added preseeds for wine-systemwide-conf package.
     - Now set the 'seen' flag when preseeding values
+    - Deleted ldap-auth-config preseeds.
+    - Updated libpam-runtime preseeds.

@@ -1,2 +1,5 @@
+# Override local changes to /etc/pam.d/common-*?
+libpam-runtime	libpam-runtime/override	boolean	true
+
 # Choices: Unix authentication, Mount volumes for user, LDAP Authentication, ConsoleKit Session Management
-libpam-runtime	libpam-runtime/profiles	multiselect	unix, libpam-mount, ldap, consolekit
+libpam-runtime	libpam-runtime/profiles	multiselect	unix, sss, libpam-mount, consolekit
