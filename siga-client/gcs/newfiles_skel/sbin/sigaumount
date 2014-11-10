@@ -13,9 +13,6 @@ MORRALLA=$*
 #	exit 0
 #fi
 
-${LOG} "[${USER}] waiting 10 seconds to logout..."
-sleep 10; ## Arreglo chungo para al KDM le de tiempo a tocar el .Xauthority antes de desmontar.
-
 #umount /bin/sigaumount  %(MNTPT) %(USER)
 
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 

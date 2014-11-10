@@ -32,3 +32,4 @@ changes:
     - Disable kernel hung task timeout.
     - Added dosbox to dependencies.
     - Replaced aufs by overlayfs mounting home.
+    - Remover wait time after sigaumount.
