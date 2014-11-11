@@ -8,6 +8,11 @@ MNTPT=$1;shift
 USER=$1;shift
 MORRALLA=$*
 
+if [ "$UID" != 0 ]; then
+	${LOG} "There is no permissions to umount resources (See bug LP: #117736)."
+	exit 0
+fi
+
 #umount /bin/sigaumount  %(MNTPT) %(USER)
 
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 

@@ -35,3 +35,4 @@ changes:
     - Removed wait time after sigaumount.
     - Fixed problems exporting HOME variable for DDV users.
     - Clean old configuration files of 'ufw'
+    - Added workaround for libpam-mount bug LP:117736.
