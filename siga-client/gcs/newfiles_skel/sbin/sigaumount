@@ -8,20 +8,19 @@ MNTPT=$1;shift
 USER=$1;shift
 MORRALLA=$*
 
-#if ! mountpoint -q ${MNTPT}; then
-#	${LOG} "${MNTPT} is not mounted. Nothing to do..."
-#	exit 0
-#fi
-
 #umount /bin/sigaumount  %(MNTPT) %(USER)
 
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
 ${LOG} "[${USER}] umounting resources"
 
+if echo $MNTPT | grep -q ull.es; then
+	MNTPT=$(echo $MNTPT | sed 's|/home$||')
+fi
+
 for DIR in ${MNTPT}/Documentos ${MNTPT}/Escritorio ${MNTPT} /tmp/${USER}-remote; do
-#	if mountpoint -q ${DIR}; then
+	if mountpoint -q ${DIR}; then
 		umount -lf ${DIR} || ${LOG} "[${USER}] WARNING: Couldn't umount ${DIR}"
-#	fi
+	fi
 done
 
 ## Avoid to delete important empty directories
