@@ -34,3 +34,4 @@ changes:
     - Replaced aufs by overlayfs mounting home.
     - Removed wait time after sigaumount.
     - Fixed problems exporting HOME variable for DDV users.
+    - Clean old configuration files of 'ufw'

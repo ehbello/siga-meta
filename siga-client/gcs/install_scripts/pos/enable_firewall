@@ -1,4 +1,7 @@
 ufw --force reset
+for i in /etc/ufw/*.rules; do
+	ls -1t $i.* | tail -n +2 | xargs rm -f
+done
 ufw default deny incoming
 ufw allow from 10.219.30.254 to any app OpenSSH
 ufw enable
