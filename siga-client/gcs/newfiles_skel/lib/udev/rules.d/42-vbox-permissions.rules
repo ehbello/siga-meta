@@ -1,0 +1,8 @@
+# Allow users to use the Virtualbox kernel module
+KERNEL=="vboxdrv", NAME="vboxdrv", GROUP="users", MODE="660", OPTIONS="last_rule"
+
+# Allow users to use the Virtualbox USB ports
+SUBSYSTEM=="usb_device", ACTION=="add", RUN+="VBoxCreateUSBNode.sh $major $minor $attr{bDeviceClass} users"
+SUBSYSTEM=="usb", ACTION=="add", ENV{DEVTYPE}=="usb_device", RUN+="VBoxCreateUSBNode.sh $major $minor $attr{bDeviceClass} users"
+SUBSYSTEM=="usb_device", ACTION=="remove", RUN+="VBoxCreateUSBNode.sh --remove $major $minor"
+SUBSYSTEM=="usb", ACTION=="remove", ENV{DEVTYPE}=="usb_device", RUN+="VBoxCreateUSBNode.sh --remove $major $minor"

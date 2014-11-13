@@ -36,3 +36,4 @@ changes:
     - Fixed problems exporting HOME variable for DDV users.
     - Clean old configuration files of 'ufw'
     - Added workaround for libpam-mount bug LP:117736.
+    - Added udev rules to grant permissions for VirtualBox kernel module and USB ports.
