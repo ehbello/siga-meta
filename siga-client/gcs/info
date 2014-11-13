@@ -37,3 +37,4 @@ changes:
     - Clean old configuration files of 'ufw'
     - Added workaround for libpam-mount bug LP:117736.
     - Added udev rules to grant permissions for VirtualBox kernel module and USB ports.
+    - Fixed overlay of USER environment variable at sigamount scripts.

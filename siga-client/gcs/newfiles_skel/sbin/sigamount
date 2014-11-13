@@ -5,24 +5,24 @@ set -e
 LOG="logger -t pam_mount"
 
 MNTPT=$1;shift
-USER=$1;shift
-USERUID=$1;shift
-USERGID=$1;shift
+OWNER=$1;shift
+OWNERUID=$1;shift
+OWNERGID=$1;shift
 MORRALLA=$*
 
-#cifsmount /sbin/sigamount  %(MNTPT) %(USER) %(USERUID) %(USERGID) %(before=\",\" OPTIONS)"
+#cifsmount /sbin/sigamount  %(MNTPT) %(OWNER) %(OWNERUID) %(OWNERGID) %(before=\",\" OPTIONS)"
 
-if grep -q "^${USER}:.*:${MNTPT}:.*" /etc/passwd; then
-	${LOG} "[${USER}] local user exists. Nothing to mount"
+if grep -q "^${OWNER}:.*:${MNTPT}:.*" /etc/passwd; then
+	${LOG} "[${OWNER}] local user exists. Nothing to mount"
 	exit 0
 fi
 
 if mountpoint -q ${MNTPT}; then
-	${LOG} "[${USER}] mountpoint ${MNTPT} already mounted. Skipping."
+	${LOG} "[${OWNER}] mountpoint ${MNTPT} already mounted. Skipping."
 	exit 0
 fi
 
-${LOG} "[${USER}] creating directory structure of mountpoint"
+${LOG} "[${OWNER}] creating directory structure of mountpoint"
 mkdir -p ${MNTPT}
 
 FULLPATH=""
@@ -38,13 +38,13 @@ done
 # The mountpoint only must be accesible by the user
 if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
 	chmod 0700 ${MNTPT}
-	chown ${USERUID}:${USERGID} ${MNTPT}
+	chown ${OWNERUID}:${OWNERGID} ${MNTPT}
 fi
 
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
 
 case ${GROUP} in
-	${USER})
+	${OWNER})
 		mount -t tmpfs -o size=20M,mode=0777 tmpfs ${MNTPT}
 		exit $?
 		;;
@@ -54,26 +54,26 @@ case ${GROUP} in
 		exit $?
 		;;
 	local)
-		URI="//server/${USER}"
+		URI="//server/${OWNER}"
 		;;
 	alumnado.ull.es)
-		URI="//aluhome.stic.ull.es/${USER}"
+		URI="//aluhome.stic.ull.es/${OWNER}"
 		;;
 	ull.es)
-		URI="//ddv.ccti.ull.es/${USER}"
+		URI="//ddv.ccti.ull.es/${OWNER}"
 		MNTPT=$(echo $MNTPT | sed 's|/home$||')
 		;;
 	siga*.stic.ull.es)
-		URI="//${GROUP}/${USER}"
+		URI="//${GROUP}/${OWNER}"
 		REMOTE=true
 		;;
 	*)
-		URI="//${GROUP}.aulas.ull.es/${USER}"
+		URI="//${GROUP}.aulas.ull.es/${OWNER}"
 		;;
 esac
 
 
-${LOG} "[${USER}@${URI}] mounting resource to ${MNTPT}"
+${LOG} "[${OWNER}@${URI}] mounting resource to ${MNTPT}"
 
 # Check if FSCache is available in kernel
 if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
@@ -83,15 +83,15 @@ if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
 fi
 
 if [ -n "${REMOTE}" ]; then
-		REMOTE_DIR=/tmp/${USER}-remote
-		LOCAL_DIR=/tmp/${USER}-local
+		REMOTE_DIR=/tmp/${OWNER}-remote
+		LOCAL_DIR=/tmp/${OWNER}-local
 		DESKTOP_DIR=Escritorio
 		DOCUMENTS_DIR=Documentos
 		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR}
 		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR}
 
-		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=ULL/${USER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
-			${LOG} "[${USER}@${URI}] can't mount resource. Mounting on tmpfs"
+		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=ULL/${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+			${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
 			mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
 			exit 1
 		fi
@@ -102,38 +102,38 @@ if [ -n "${REMOTE}" ]; then
 				mv ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}
 			fi
 			mkdir -p ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
-			chown ${USERID}:${USERGID} ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
+			chown ${OWNERID}:${OWNERGID} ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
 			if [ -e ${LOCAL_DIR}/${DIR} ] && [ ! -d ${LOCAL_DIR}/${DIR} ]; then
 				mv ${LOCAL_DIR}/${DIR} ${REMOTE_DIR}/private/${DIR}
 			fi
 		done
 
 		# first branch is writable and remaining are readonly by default.
-		${LOG} "[${USER}@${URI}] merging local and remote directories"
+		${LOG} "[${OWNER}@${URI}] merging local and remote directories"
 		mount -t overlayfs -o "lowerdir=${REMOTE_DIR}/private,upperdir=${LOCAL_DIR}" overlayfs ${MNTPT}
 		
 		# mounting bind of directories
 		for DIR in ${DESKTOP_DIR} ${DOCUMENTS_DIR}; do	
-			${LOG} "[${USER}@${URI}] enabling write of remote ${DIR} directory"
+			${LOG} "[${OWNER}@${URI}] enabling write of remote ${DIR} directory"
 			mount -o bind ${REMOTE_DIR}/private/${DIR} ${MNTPT}/${DIR}
 		done
 
 		# The mountpoint only must be accesible by the user
 		if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
-			${LOG} "[${USER}@${URI}] enforcing permissions of mountpoint"
+			${LOG} "[${OWNER}@${URI}] enforcing permissions of mountpoint"
 			chmod 0700 ${MNTPT}
-			chown ${USERUID}:${USERGID} ${MNTPT}
+			chown ${OWNERUID}:${OWNERGID} ${MNTPT}
 		fi
 
-		${LOG} "[${USER}@${URI}] Success."
+		${LOG} "[${OWNER}@${URI}] Success."
 
 		exit 0
 fi
 
-if ! mount -t cifs ${URI} ${MNTPT} -o "user=${USER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
-	${LOG} "[${USER}@${URI}] can't mount resource. Mounting on tmpfs"
+if ! mount -t cifs ${URI} ${MNTPT} -o "user=${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+	${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
 	mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
 	exit 1
 fi
 
-${LOG} "[${USER}@${URI}] Success."
+${LOG} "[${OWNER}@${URI}] Success."

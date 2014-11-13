@@ -5,26 +5,26 @@ set -e
 LOG="logger -t pam_mount"
 
 MNTPT=$1;shift
-USER=$1;shift
+OWNER=$1;shift
 MORRALLA=$*
 
-if [ "$UID" != 0 ]; then
-	${LOG} "There is no permissions to umount resources (See bug LP: #117736)."
+if [ "$USER" = "$OWNER" ]; then
+	${LOG} "User $USER has no permissions to umount resources (See bug LP: #117736)."
 	exit 0
 fi
 
-#umount /bin/sigaumount  %(MNTPT) %(USER)
+#umount /bin/sigaumount  %(MNTPT) %(OWNER)
 
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
-${LOG} "[${USER}] umounting resources"
+${LOG} "[${OWNER}] umounting resources"
 
 if echo $MNTPT | grep -q ull.es; then
 	MNTPT=$(echo $MNTPT | sed 's|/home$||')
 fi
 
-for DIR in ${MNTPT}/Documentos ${MNTPT}/Escritorio ${MNTPT} /tmp/${USER}-remote; do
+for DIR in ${MNTPT}/Documentos ${MNTPT}/Escritorio ${MNTPT} /tmp/${OWNER}-remote; do
 	if mountpoint -q ${DIR}; then
-		umount -lf ${DIR} || ${LOG} "[${USER}] WARNING: Couldn't umount ${DIR}"
+		umount -lf ${DIR} || ${LOG} "[${OWNER}] WARNING: Couldn't umount ${DIR}"
 	fi
 done
 
@@ -32,7 +32,7 @@ done
 touch /home/.directory /root/.directory || true
 
 #if [ ${GROUP} != "local" ]; then
-#	TMPDIR=/tmp/${GROUP}/${USER}
+#	TMPDIR=/tmp/${GROUP}/${OWNER}
 #	if [ -d ${TMPDIR} ]; then
 #		umount -lf ${TMPDIR}
 #		rmdir --parents ${TMPDIR}
@@ -40,4 +40,4 @@ touch /home/.directory /root/.directory || true
 #fi
 
 rmdir --parents ${MNTPT} --ignore-fail-on-non-empty
-${LOG} "[${USER}] Success."
+${LOG} "[${OWNER}] Success."
