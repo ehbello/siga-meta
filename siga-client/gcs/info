@@ -19,22 +19,8 @@ shortdesc: "Dummy package that installs the configuration for a SIGA Client."
 longdesc: "This package is only for a client in to a SIGA Classroom. \n WANING: Don't install at your home. \n It will crash your installation."
 
 # Versión del paquete
-version: 3.0~precise1
+version: 3.0~precise2
 
 # Cambios en esta versión
 changes:
-    - Protected siga-client package to never autoremove. 
-    - Added CUPSd configuration to allow permissions to SIGA administrators.
-    - Ignore each rmdir failure when a directory is non-empty in sigaumount
-    - Enabled CUPSd automatic remote printer detection.
-    - Fixed Teachers / PASS accounts compatibility for java applications.
-    - Replaced nss_ldap/pam_ldap/nscd/ by sssd.
-    - Disable kernel hung task timeout.
-    - Added dosbox to dependencies.
-    - Replaced aufs by overlayfs mounting home.
-    - Removed wait time after sigaumount.
-    - Fixed problems exporting HOME variable for DDV users.
-    - Clean old configuration files of 'ufw'
-    - Added workaround for libpam-mount bug LP:117736.
-    - Added udev rules to grant permissions for VirtualBox kernel module and USB ports.
-    - Fixed overlay of USER environment variable at sigamount scripts.
+    - Reload sss daemon after package install to apply new config.

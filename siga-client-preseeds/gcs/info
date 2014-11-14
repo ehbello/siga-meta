@@ -11,7 +11,7 @@ author: Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.u
 priority: optional
 
 # Section
-section: siga
+section: misc
 
 # Descripción corta
 shortdesc: "Contents preseeds for siga-client package."
@@ -20,11 +20,10 @@ shortdesc: "Contents preseeds for siga-client package."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 3.0~precise1
+version: 3.0~precise2
 
 # Cambios en esta versión
 changes:
-    - Added preseeds for wine-systemwide-conf package.
-    - Now set the 'seen' flag when preseeding values
-    - Deleted ldap-auth-config preseeds.
-    - Updated libpam-runtime preseeds.
+    - Added preseed to accept EULA license for ttf-mscorefonts-installer.
+    - Set verbose for debconf-set-selections.
+    - Changed section of package to 'misc'
