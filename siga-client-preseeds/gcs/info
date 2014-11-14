@@ -8,7 +8,7 @@ name: siga-client-preseeds
 author: Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>
 
 # Priority
-priority: optional
+priority: important
 
 # Section
 section: misc
@@ -27,3 +27,4 @@ changes:
     - Added preseed to accept EULA license for ttf-mscorefonts-installer.
     - Set verbose for debconf-set-selections.
     - Changed section of package to 'misc'
+    - Changed priority of package to 'important'.

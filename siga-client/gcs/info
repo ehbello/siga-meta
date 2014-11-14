@@ -7,7 +7,7 @@ name: siga-client
 author: Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>
 
 # Priority
-priority: optional
+priority: required
 
 # Section
 section: metapackage
@@ -24,3 +24,4 @@ version: 3.0~precise2
 # Cambios en esta versión
 changes:
     - Reload sss daemon after package install to apply new config.
+    - Changed priority of package to 'required'.
