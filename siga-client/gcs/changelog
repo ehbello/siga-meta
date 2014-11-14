@@ -1,3 +1,24 @@
+siga-client (3.0~precise1) precise; urgency=low
+
+  * Protected siga-client package to never autoremove.
+  * Added CUPSd configuration to allow permissions to SIGA administrators.
+  * Ignore each rmdir failure when a directory is non-empty in sigaumount
+  * Enabled CUPSd automatic remote printer detection.
+  * Fixed Teachers / PASS accounts compatibility for java applications.
+  * Replaced nss_ldap/pam_ldap/nscd/ by sssd.
+  * Disable kernel hung task timeout.
+  * Added dosbox to dependencies.
+  * Replaced aufs by overlayfs mounting home.
+  * Removed wait time after sigaumount.
+  * Fixed problems exporting HOME variable for DDV users.
+  * Clean old configuration files of 'ufw'
+  * Added workaround for libpam-mount bug LP:117736.
+  * Added udev rules to grant permissions for VirtualBox kernel module and USB ports.
+  * Fixed overlay of USER environment variable at sigamount scripts.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 13 Nov 2014 15:18:45 +0000
+
+
 siga-client (2.3.5) precise; urgency=low
 
   * Moved all non-debconf configurations from siga-client-conf.
