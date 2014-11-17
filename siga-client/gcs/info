@@ -25,3 +25,4 @@ version: 3.0~precise2
 changes:
     - Reload sss daemon after package install to apply new config.
     - Changed priority of package to 'required'.
+    - Changed sound permissions to 'users' group.
