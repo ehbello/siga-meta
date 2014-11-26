@@ -1,3 +1,12 @@
+siga-client (3.0~precise2) precise; urgency=low
+
+  * Reload sss daemon after package install to apply new config.
+  * Changed priority of package to 'required'.
+  * Changed sound permissions to 'users' group.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 17 Nov 2014 14:42:06 +0000
+
+
 siga-client (3.0~precise1) precise; urgency=low
 
   * Protected siga-client package to never autoremove.

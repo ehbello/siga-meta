@@ -1,3 +1,13 @@
+siga-client-preseeds (3.0~precise2) precise; urgency=low
+
+  * Added preseed to accept EULA license for ttf-mscorefonts-installer.
+  * Set verbose for debconf-set-selections.
+  * Changed section of package to 'misc'
+  * Changed priority of package to 'important'.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 17 Nov 2014 14:42:42 +0000
+
+
 siga-client-preseeds (3.0~precise1) precise; urgency=low
 
   * Added preseeds for wine-systemwide-conf package.

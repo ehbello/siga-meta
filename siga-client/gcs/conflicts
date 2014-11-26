@@ -3,3 +3,10 @@ linux-siga-client
 linux-image-siga-client
 linux-headers-siga-client
 siga-client-conf (<< 2.3.5)
+
+# old dependencies
+libnss-db
+libnss-ldap
+libpam-ldap
+nscd
+nss-updatedb
