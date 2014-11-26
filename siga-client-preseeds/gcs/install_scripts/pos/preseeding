@@ -1,4 +1,2 @@
 echo "Preseeding debconf keys..."
-for PRESEED in /usr/share/siga-client-preseeds/*.preseed; do
-	debconf-set-selections -v ${PRESEED}
-done
+debconf-set-selections -v /usr/share/siga-client-preseeds/*.preseed 2>&1 | grep -v "\[.*\]"

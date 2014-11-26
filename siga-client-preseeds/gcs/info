@@ -25,3 +25,4 @@ version: 3.0~precise3
 # Cambios en esta versión
 changes:
     - Added preseed for jackd2 package.
+    - Filtered stdout of preseeding messages.
