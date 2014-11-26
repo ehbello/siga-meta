@@ -1,3 +1,11 @@
+siga-client-preseeds (3.0~precise3) precise; urgency=low
+
+  * Added preseed for jackd2 package.
+  * Filtered stdout of preseeding messages.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 26 Nov 2014 13:30:01 +0000
+
+
 siga-client-preseeds (3.0~precise2) precise; urgency=low
 
   * Added preseed to accept EULA license for ttf-mscorefonts-installer.

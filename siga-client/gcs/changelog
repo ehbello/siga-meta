@@ -1,3 +1,10 @@
+siga-client (3.0~precise3) precise; urgency=low
+
+  * Added conflicts for old dependencies.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 26 Nov 2014 13:29:27 +0000
+
+
 siga-client (3.0~precise2) precise; urgency=low
 
   * Reload sss daemon after package install to apply new config.
