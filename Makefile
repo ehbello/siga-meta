@@ -7,11 +7,17 @@ STATUS_CMD ?= bzr st
 PKGNAME = $*
 DATE = $(shell date +"%b %d %T")
 TMPFILE := $(shell mktemp)
+DIFF = bzr diff
+COMMIT = bzr commit
+REVERT = bzr revert
 
 .PHONY: all status
 all: $(patsubst %/gcs,%.build,$(wildcard */gcs))
 status: $(patsubst %/gcs,%/status,$(wildcard */gcs))
 notreleased: $(patsubst %/gcs,%/notreleased,$(wildcard */gcs))
+
+%/build: %.build
+	$(info [$(DATE)] $(PKGNAME): Finished.)
 
 %.build: %/debian/changelog
 	$(info [$(DATE)] $(PKGNAME): starting build process...)
@@ -43,7 +49,7 @@ notreleased: $(patsubst %/gcs,%/notreleased,$(wildcard */gcs))
 
 %/fullclean: %/clean
 	$(info [$(DATE)] $(PKGNAME): removing all output files...)
-	bzr revert $(PKGNAME)/gcs/changelog
+	$(REVERT) $(PKGNAME)/gcs/changelog
 	-rm -f $(PKGNAME)*.build
 	-rm -f $(PKGNAME)*.dsc
 	-rm -f $(PKGNAME)*.changes
@@ -60,22 +66,22 @@ notreleased: $(patsubst %/gcs,%/notreleased,$(wildcard */gcs))
 	fi
 
 %/commit: %/clean
-	bzr diff $(PKGNAME)/gcs/changelog  | grep '^+.*urgency=' | sed -e 's/\(.* (.*)\).*/\1/g' -e '1s/.*/Not released packages:\n&/' | tee $(TMPFILE)
-	bzr diff $(PKGNAME)/gcs/info | grep "^+" | sed -e 's#+++ \(.*\)/gcs/info.*#\n\1:#g' -e 's#^+version: \(.*\)#(New version: \1)#' -e 's#^+##' | sed '1d' | tee -a $(TMPFILE)
+	$(DIFF) $(PKGNAME)/gcs/changelog  | grep '^+.*urgency=' | sed -e 's/\(.* (.*)\).*/\1/g' -e '1s/.*/Released packages:\n&/' | tee $(TMPFILE)
+	$(DIFF) $(PKGNAME)/gcs/info | grep "^+" | sed -e 's#+++ \(.*\)/gcs/info.*#\n\1:#g' -e 's#^+version: \(.*\)#(New version: \1)#' -e 's#^+##' | sed '1d' | tee -a $(TMPFILE)
 	echo Press [ENTER] to continue or ctrl-c to cancel commit
 	read dummy
-	bzr ci $(PKGNAME) -F $(TMPFILE)
+	$(COMMIT) $(PKGNAME) -F $(TMPFILE)
 	-rm -f $(TMPFILE)
 
 uncommit:
 	bzr uncommit
 
 commit: clean
-	bzr diff */gcs/changelog  | grep '^+.*urgency=' | sed -e 's/\(.* (.*)\).*/\1/g' -e 's/^+/    - /g' -e '1s/.*/Not released packages:\n&/' | tee $(TMPFILE)
-	bzr diff */gcs/info | grep "^+" | sed -e 's#+++ \(.*\)/gcs/info.*#\n\1:#g' -e 's#^+version: \(.*\)#(New version: \1)#' -e 's#^+##' | sed '1d' | tee -a $(TMPFILE)
+	$(DIFF) */gcs/changelog  | grep '^+.*urgency=' | sed -e 's/\(.* (.*)\).*/\1/g' -e 's/^+/    - /g' -e '1s/.*/Released packages:\n&/' | tee $(TMPFILE)
+	$(DIFF) */gcs/info | grep "^+" | sed -e 's#+++ \(.*\)/gcs/info.*#\n\1:#g' -e 's#^+version: \(.*\)#(New version: \1)#' -e 's#^+##' | sed '1d' | tee -a $(TMPFILE)
 	echo Press [ENTER] to continue or ctrl-c to cancel commit
 	read dummy
-	bzr ci -x Makefile -F $(TMPFILE)
+	$(COMMIT) -F $(TMPFILE)
 	-rm -f $(TMPFILE)
 
 recommit: fullclean uncommit commit
