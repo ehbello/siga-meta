@@ -1,3 +1,10 @@
+siga-client-preseeds (3.0~precise4) precise; urgency=low
+
+  * Bump version.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Tue, 14 Apr 2015 14:09:37 +0100
+
+
 siga-client-preseeds (3.0~precise3) precise; urgency=low
 
   * Added preseed for jackd2 package.
