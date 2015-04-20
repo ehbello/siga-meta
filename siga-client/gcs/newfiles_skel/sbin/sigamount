@@ -60,7 +60,7 @@ case ${GROUP} in
 		URI="//aluhome.stic.ull.es/${OWNER}"
 		;;
 	ull.es)
-		URI="//ddv.ccti.ull.es/${OWNER}"
+		URI="//ddv.ull.es/${OWNER}"
 		MNTPT=$(echo $MNTPT | sed 's|/home$||')
 		;;
 	siga*.stic.ull.es)

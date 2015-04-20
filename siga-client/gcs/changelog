@@ -1,3 +1,10 @@
+siga-client (3.0~precise5) precise; urgency=low
+
+  * Scan /lib/ufw/*.rules for old configuration files to delete.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 17 Apr 2015 12:44:56 +0100
+
+
 siga-client (3.0~precise4) precise; urgency=low
 
   * Added support for Hardware Enhacement Stack kernels.
