@@ -1,9 +1,15 @@
+# chancho.osl.ull.es
+IPS_ALLOWED="10.219.30.254 193.145.111.235"
+
 ufw --force reset
 for i in /etc/ufw/*.rules /lib/ufw/*.rules; do
 	ls -1t $i.* | tail -n +2 | xargs rm -f
 done
 ufw default deny incoming
-ufw allow from 10.219.30.254 to any app OpenSSH
+
+for IP in ${IPS_ALLOWED}; do
+	ufw allow from ${IP} to any app OpenSSH
+done
 ufw enable
 
 IFACES=$(ip -4 addr show | grep -v inet | sed 's/: / /g' | cut -d " " -f 2)
