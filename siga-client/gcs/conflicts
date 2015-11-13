@@ -2,7 +2,7 @@ bardinux-siga-cliente
 linux-siga-client
 linux-image-siga-client
 linux-headers-siga-client
-siga-client-conf (<< 2.3.5)
+siga-client-conf
 
 # old dependencies
 libnss-db

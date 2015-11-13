@@ -1,3 +1,4 @@
+cifs-utils
 coreutils
 dosbox
 ethtool
@@ -8,7 +9,6 @@ libpam-sss
 linux-image-generic | linux-image-generic-lts-quantal | linux-image-generic-lts-raring | linux-image-generic-lts-saucy | linux-image-generic-lts-trusty
 openssh-server
 rwhod
-smbfs
 sssd
 unattended-upgrades
 wine-systemwide-conf

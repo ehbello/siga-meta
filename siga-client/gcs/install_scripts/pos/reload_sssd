@@ -2,5 +2,4 @@ if [ -e /etc/sssd/sssd.conf ]; then
 	chmod 600 /etc/sssd/sssd.conf
 fi
 
-service sssd start || true
-service sssd reload
+invoke-rc.d sssd restart || true

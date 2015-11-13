@@ -7,20 +7,25 @@ name: siga-client
 author: Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>
 
 # Priority
-priority: required
+priority: standard
 
 # Section
-section: metapackage
+section: net
 
 # Descripción corta
-shortdesc: "Dummy package that installs the configuration for a SIGA Client."
+shortdesc: "Dummy package that installs the configuration for a SIGA Client"
 
 # Descipción larga, las lineas han de estar separadas por "\n "
 longdesc: "This package is only for a client in to a SIGA Classroom. \n WANING: Don't install at your home. \n It will crash your installation."
 
 # Versión del paquete
-version: 3.0~precise7
+version: 3.0~xenial1
 
 # Cambios en esta versión
 changes:
-    - Added public IP of chancho.osl.ull.es to ufw rules.
+    - Rebuild for 'xenial'
+    - Replaced '${binary:Version}' dependency by '${source:Upstream-Version}'
+    - Used invoke-rc.d instead of init scripts in postinst script.
+    - Added siga-client-conf to breaks.
+    - Removed 'upstart' of predepends.
+    - Replaced 'smbfs' by 'cifs-utils' in depends.
