@@ -280,7 +280,7 @@ me without -jengelh), example (thanks John Knox):
         mountpoint="~" options="dmask=0751,workgroup=WINDOWS_DOMAIN" />
 
 -->
-<volume user="*" fstype="cifs" server="dummy" path="%(USER)" mountpoint="~" />
+<volume user="*" fstype="cifs" server="dummy" path="%(USER)" mountpoint="~" options="_netdev,serverino" />
 
 <!--
 Linux encrypted home directory examples, using dm_crypt:

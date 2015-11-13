@@ -30,3 +30,5 @@ changes:
     - Removed 'upstart' of predepends.
     - Replaced 'smbfs' by 'cifs-utils (>= 2:5.9)' in depends.
     - Removed domain info of username= in mounts.
+    - Moved mount options to pam_mount.conf.
+    - Removed sec=ntlmv2 option.

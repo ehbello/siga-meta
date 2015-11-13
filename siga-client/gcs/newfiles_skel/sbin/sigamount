@@ -13,7 +13,7 @@ MNTPT=$1;shift
 OWNER=$1;shift
 OWNERUID=$1;shift
 OWNERGID=$1;shift
-MORRALLA=$*
+OPTIONS=$*
 
 #cifsmount /sbin/sigamount  %(MNTPT) %(OWNER) %(OWNERUID) %(OWNERGID) %(before=\",\" OPTIONS)"
 
@@ -84,7 +84,7 @@ ${LOG} "[${OWNER}@${URI}] mounting resource to ${MNTPT}"
 if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
  ( egrep -q "^ *CONFIG_FSCACHE=y" /boot/config-`uname -r` || \
  ( egrep -q "^ *CONFIG_FSCACHE=m" /boot/config-`uname -r` && lsmod | grep -q fscache ) ); then
-	MORRALLA=",fsc${MORRALLA}"
+	OPTIONS=",fsc${OPTIONS}"
 fi
 
 if [ -n "${REMOTE}" ]; then
@@ -95,7 +95,7 @@ if [ -n "${REMOTE}" ]; then
 		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR}
 		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR}
 
-		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=${OWNER}${OPTIONS}"; then
 			${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
 			mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
 			exit 1
@@ -135,7 +135,7 @@ if [ -n "${REMOTE}" ]; then
 		exit 0
 fi
 
-if ! mount -t cifs ${URI} ${MNTPT} -o "user=${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+if ! mount -t cifs ${URI} ${MNTPT} -o "user=${OWNER}${OPTIONS}"; then
 	${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
 	mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
 	exit 1
