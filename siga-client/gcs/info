@@ -28,4 +28,5 @@ changes:
     - Used invoke-rc.d instead of init scripts in postinst script.
     - Added siga-client-conf to breaks.
     - Removed 'upstart' of predepends.
-    - Replaced 'smbfs' by 'cifs-utils' in depends.
+    - Replaced 'smbfs' by 'cifs-utils (>= 2:5.9)' in depends.
+    - Removed domain info of username= in mounts.

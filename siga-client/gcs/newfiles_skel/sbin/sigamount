@@ -2,6 +2,11 @@
 
 set -e
 
+if test "$#" -lt 4; then
+	echo "Usage: $0 <mntpt> <owner> <owneruid> <ownergid> [options]"
+	exit 1
+fi
+
 LOG="logger -t pam_mount"
 
 MNTPT=$1;shift
@@ -90,7 +95,7 @@ if [ -n "${REMOTE}" ]; then
 		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR}
 		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR}
 
-		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=ULL/${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
 			${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
 			mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
 			exit 1
