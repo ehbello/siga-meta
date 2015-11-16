@@ -90,10 +90,11 @@ fi
 if [ -n "${REMOTE}" ]; then
 		REMOTE_DIR=/tmp/${OWNER}-remote
 		LOCAL_DIR=/tmp/${OWNER}-local
+		WORK_DIR=/tmp/${OWNER}-work
 		DESKTOP_DIR=Escritorio
 		DOCUMENTS_DIR=Documentos
-		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR}
-		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR}
+		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR} ${WORK_DIR}
+		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR} ${WORK_DIR}
 
 		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=${OWNER}${OPTIONS}"; then
 			${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
@@ -115,7 +116,7 @@ if [ -n "${REMOTE}" ]; then
 
 		# first branch is writable and remaining are readonly by default.
 		${LOG} "[${OWNER}@${URI}] merging local and remote directories"
-		mount -t overlayfs -o "lowerdir=${REMOTE_DIR}/private,upperdir=${LOCAL_DIR}" overlayfs ${MNTPT}
+		mount -t overlayfs -o "lowerdir=${REMOTE_DIR}/private,upperdir=${LOCAL_DIR},workdir=${WORK_DIR}" overlayfs ${MNTPT}
 		
 		# mounting bind of directories
 		for DIR in ${DESKTOP_DIR} ${DOCUMENTS_DIR}; do	

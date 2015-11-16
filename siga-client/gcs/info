@@ -32,3 +32,4 @@ changes:
     - Removed domain info of username= in mounts.
     - Moved mount options to pam_mount.conf.
     - Removed sec=ntlmv2 option.
+    - Added support to handle workdir parameter in overlayfs mounts.
