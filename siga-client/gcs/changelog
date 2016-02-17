@@ -1,3 +1,19 @@
+siga-client (3.0~xenial1) xenial; urgency=low
+
+  * Rebuild for 'xenial'
+  * Replaced '${binary:Version}' dependency by '${source:Upstream-Version}'
+  * Used invoke-rc.d instead of init scripts in postinst script.
+  * Added siga-client-conf to breaks.
+  * Removed 'upstart' of predepends.
+  * Replaced 'smbfs' by 'cifs-utils (>= 2:5.9)' in depends.
+  * Removed domain info of username= in mounts.
+  * Moved mount options to pam_mount.conf.
+  * Removed sec=ntlmv2 option.
+  * Added support to handle workdir parameter in overlayfs mounts.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 16 Nov 2015 16:49:02 +0000
+
+
 siga-client (3.0~precise5) precise; urgency=low
 
   * Scan /lib/ufw/*.rules for old configuration files to delete.

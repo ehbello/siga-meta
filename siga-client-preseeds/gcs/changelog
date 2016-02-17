@@ -1,3 +1,11 @@
+siga-client-preseeds (3.0~xenial1) xenial; urgency=low
+
+  * Rebuild for 'xenial'
+  * Added siga-client-conf to breaks.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 16 Nov 2015 16:45:57 +0000
+
+
 siga-client-preseeds (3.0~precise6) precise; urgency=low
 
   * Bump version.
