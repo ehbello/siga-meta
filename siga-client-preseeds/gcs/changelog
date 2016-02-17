@@ -1,3 +1,10 @@
+siga-client-preseeds (3.1) xenial; urgency=low
+
+  * Bump version.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 17 Feb 2016 18:16:13 +0000
+
+
 siga-client-preseeds (3.0.5+xenial1) xenial; urgency=low
 
   * Rebuild for 'xenial'
