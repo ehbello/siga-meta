@@ -1,3 +1,10 @@
+siga-client-preseeds (3.1.1) xenial; urgency=low
+
+  * Changed priority to 'extra'.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 19 Feb 2016 14:53:08 +0000
+
+
 siga-client-preseeds (3.1) xenial; urgency=low
 
   * Bump version.
