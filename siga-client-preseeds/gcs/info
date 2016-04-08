@@ -20,7 +20,7 @@ shortdesc: "Contents preseeds for siga-client package."
 longdesc: "No instales esto en casa, solo si la maquina donde lo vas a instalar pertenece a un aula SIGA."
 
 # Versión del paquete
-version: 3.0~precise7
+version: 3.0~precise8
 
 # Cambios en esta versión
 changes:

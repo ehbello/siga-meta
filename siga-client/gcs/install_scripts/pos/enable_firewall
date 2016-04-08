@@ -1,5 +1,5 @@
 # chancho.osl.ull.es
-IPS_ALLOWED="10.219.30.254 193.145.111.235"
+IPS_ALLOWED="10.209.30.225 10.209.30.226 10.209.30.227 193.145.102.240"
 
 ufw --force reset
 for i in /etc/ufw/*.rules /lib/ufw/*.rules; do
