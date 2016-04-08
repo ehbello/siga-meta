@@ -16,7 +16,7 @@ section: net
 shortdesc: "Dummy package that installs the configuration for a SIGA Client"
 
 # Descipción larga, las lineas han de estar separadas por "\n "
-longdesc: "This package is only for a client in to a SIGA Classroom. \n WANING: Don't install at your home. \n It will crash your installation."
+longdesc: "This package is only for a client of a SIGA Classroom. \n WANING: Don't install this at your home. \n It will crash your installation."
 
 # Versión del paquete
 version: 3.1.2
@@ -24,3 +24,4 @@ version: 3.1.2
 # Cambios en esta versión
 changes:
     - Updated allowed IPs in ufw rules.
+    - Updated long description.
