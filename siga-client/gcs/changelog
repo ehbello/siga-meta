@@ -1,3 +1,10 @@
+siga-client (3.0~precise8) precise; urgency=low
+
+  * Updated allowed IPs in ufw rules.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 08 Apr 2016 14:28:07 +0100
+
+
 siga-client (3.0~precise7) precise; urgency=low
 
   * Added public IP of chancho.osl.ull.es to ufw rules.
