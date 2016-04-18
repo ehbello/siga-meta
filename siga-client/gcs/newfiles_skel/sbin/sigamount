@@ -2,17 +2,26 @@
 
 set -e
 
+if test "$#" -lt 2; then
+	cat << EOF
+Usage: $0 <user> <mntpt> -o <OPTIONS>
+
+Mount the remote target of an owner name to a local directory.
+EOF
+	exit 1
+fi
+
 LOG="logger -t pam_mount"
 
-MNTPT=$1;shift
-OWNER=$1;shift
-OWNERUID=$1;shift
-OWNERGID=$1;shift
-MORRALLA=$*
 
-#cifsmount /sbin/sigamount  %(MNTPT) %(OWNER) %(OWNERUID) %(OWNERGID) %(before=\",\" OPTIONS)"
+OWNER=$1;shift
+MNTPT=$1;shift
+OWNERUID=$(echo $* | sed 's/.*uid=\([^,]\+\).*/\1/')
+OWNERGID=$(echo $* | sed 's/.*gid=\([^,]\+\).*/\1/')
+OPTIONS=$(echo $* | sed 's/ *-o *//g')
 
 if grep -q "^${OWNER}:.*:${MNTPT}:.*" /etc/passwd; then
+	# Warning: this overlaps first domain uids.
 	${LOG} "[${OWNER}] local user exists. Nothing to mount"
 	exit 0
 fi
@@ -38,7 +47,9 @@ done
 # The mountpoint only must be accesible by the user
 if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
 	chmod 0700 ${MNTPT}
-	chown ${OWNERUID}:${OWNERGID} ${MNTPT}
+	if [ -n "${OWNERUID}" ] && [ -n "${OWNERGID}" ]; then
+		chown ${OWNERUID}:${OWNERGID} ${MNTPT}
+	fi
 fi
 
 GROUP=`echo ${MNTPT} | cut -d "/" -f 3` 
@@ -79,7 +90,7 @@ ${LOG} "[${OWNER}@${URI}] mounting resource to ${MNTPT}"
 if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
  ( egrep -q "^ *CONFIG_FSCACHE=y" /boot/config-`uname -r` || \
  ( egrep -q "^ *CONFIG_FSCACHE=m" /boot/config-`uname -r` && lsmod | grep -q fscache ) ); then
-	MORRALLA=",fsc${MORRALLA}"
+	OPTIONS="fsc,${OPTIONS}"
 fi
 
 if [ -n "${REMOTE}" ]; then
@@ -90,7 +101,7 @@ if [ -n "${REMOTE}" ]; then
 		mkdir -p   ${LOCAL_DIR} ${REMOTE_DIR}
 		chmod 0700 ${LOCAL_DIR} ${REMOTE_DIR}
 
-		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "user=ULL/${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+		if ! mount -t cifs ${URI} ${REMOTE_DIR} -o "${OPTIONS}"; then
 			${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
 			mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
 			exit 1
@@ -102,7 +113,7 @@ if [ -n "${REMOTE}" ]; then
 				mv ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}
 			fi
 			mkdir -p ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
-			chown ${OWNERID}:${OWNERGID} ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
+			chown ${OWNERUID}:${OWNERGID} ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
 			if [ -e ${LOCAL_DIR}/${DIR} ] && [ ! -d ${LOCAL_DIR}/${DIR} ]; then
 				mv ${LOCAL_DIR}/${DIR} ${REMOTE_DIR}/private/${DIR}
 			fi
@@ -122,7 +133,9 @@ if [ -n "${REMOTE}" ]; then
 		if [ -d ${MNTPT} ] && [ ${MNTPT} != "/tmp" ]; then
 			${LOG} "[${OWNER}@${URI}] enforcing permissions of mountpoint"
 			chmod 0700 ${MNTPT}
-			chown ${OWNERUID}:${OWNERGID} ${MNTPT}
+			if [ -n "${OWNERUID}" ] && [ -n "${OWNERGID}" ]; then
+				chown ${OWNERUID}:${OWNERGID} ${MNTPT}
+			fi
 		fi
 
 		${LOG} "[${OWNER}@${URI}] Success."
@@ -130,7 +143,7 @@ if [ -n "${REMOTE}" ]; then
 		exit 0
 fi
 
-if ! mount -t cifs ${URI} ${MNTPT} -o "user=${OWNER},_netdev,serverino,sec=ntlmv2${MORRALLA}"; then
+if ! mount -t cifs ${URI} ${MNTPT} -o "${OPTIONS}"; then
 	${LOG} "[${OWNER}@${URI}] can't mount resource. Mounting on tmpfs"
 	mount -t tmpfs -o size=200M,mode=0777 tmpfs ${MNTPT}
 	exit 1

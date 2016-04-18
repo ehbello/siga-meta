@@ -1,39 +1,47 @@
-siga-client-preseeds (3.0~precise8) precise; urgency=low
+siga-client-preseeds (3.1.2) precise; urgency=low
+
+  * Updated long description.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 18 Apr 2016 15:41:55 +0100
+
+
+siga-client-preseeds (3.1.1) xenial; urgency=low
+
+  * Changed priority to 'extra'.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 19 Feb 2016 14:53:08 +0000
+
+
+siga-client-preseeds (3.1) xenial; urgency=low
 
   * Bump version.
 
- -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 08 Apr 2016 14:28:41 +0100
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 17 Feb 2016 18:16:13 +0000
 
 
-siga-client-preseeds (3.0~precise7) precise; urgency=low
+siga-client-preseeds (3.0.5+xenial1) xenial; urgency=low
 
-  * Bump version.
+  * Rebuild for 'xenial'
+  * Added siga-client-conf to breaks.
 
- -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 30 Sep 2015 14:35:27 +0100
-
-
-siga-client-preseeds (3.0~precise6) precise; urgency=low
-
-  * Bump version.
-
- -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 20 Apr 2015 17:01:51 +0100
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 16 Nov 2015 16:45:57 +0000
 
 
-siga-client-preseeds (3.0~precise5) precise; urgency=low
+siga-client-preseeds (3.0.5) precise; urgency=low
 
   * Bump version.
 
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 17 Apr 2015 12:49:17 +0100
 
 
-siga-client-preseeds (3.0~precise4) precise; urgency=low
+siga-client-preseeds (3.0.4) precise; urgency=low
 
   * Bump version.
 
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Tue, 14 Apr 2015 14:09:37 +0100
 
 
-siga-client-preseeds (3.0~precise3) precise; urgency=low
+siga-client-preseeds (3.0.3) precise; urgency=low
 
   * Added preseed for jackd2 package.
   * Filtered stdout of preseeding messages.
@@ -41,7 +49,7 @@ siga-client-preseeds (3.0~precise3) precise; urgency=low
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 26 Nov 2014 13:30:01 +0000
 
 
-siga-client-preseeds (3.0~precise2) precise; urgency=low
+siga-client-preseeds (3.0.2) precise; urgency=low
 
   * Added preseed to accept EULA license for ttf-mscorefonts-installer.
   * Set verbose for debconf-set-selections.
@@ -51,7 +59,7 @@ siga-client-preseeds (3.0~precise2) precise; urgency=low
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 17 Nov 2014 14:42:42 +0000
 
 
-siga-client-preseeds (3.0~precise1) precise; urgency=low
+siga-client-preseeds (3.0.1) precise; urgency=low
 
   * Added preseeds for wine-systemwide-conf package.
   * Now set the 'seen' flag when preseeding values

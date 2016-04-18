@@ -1,39 +1,67 @@
-siga-client (3.0~precise8) precise; urgency=low
+siga-client (3.1.2) precise; urgency=low
 
   * Updated allowed IPs in ufw rules.
+  * Updated long description.
+  * Fixed bug setting permissions in mountpoints.
+  * Deleted version of cifs-utils dependency.
+  * Revert server="dummy" in pam_mount.conf.xml
 
- -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 08 Apr 2016 14:28:07 +0100
-
-
-siga-client (3.0~precise7) precise; urgency=low
-
-  * Added public IP of chancho.osl.ull.es to ufw rules.
-
- -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 30 Sep 2015 14:35:00 +0100
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 18 Apr 2016 15:41:25 +0100
 
 
-siga-client (3.0~precise5) precise; urgency=low
+siga-client (3.1.1) xenial; urgency=low
+
+  * Changed priority to 'extra'.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 19 Feb 2016 14:56:15 +0000
+
+
+siga-client (3.1) xenial; urgency=low
+
+  * Refactorized configuration related with pam_mount.
+  * Fixed blank screen bug in sddm.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 17 Feb 2016 18:47:03 +0000
+
+
+siga-client (3.0.5+xenial1) xenial; urgency=low
+
+  * Rebuild for 'xenial'
+  * Replaced '${binary:Version}' dependency by '${source:Upstream-Version}'
+  * Used invoke-rc.d instead of init scripts in postinst script.
+  * Added siga-client-conf to breaks.
+  * Removed 'upstart' of predepends.
+  * Replaced 'smbfs' by 'cifs-utils (>= 2:5.9)' in depends.
+  * Removed domain info of username= in mounts.
+  * Moved mount options to pam_mount.conf.
+  * Removed sec=ntlmv2 option.
+  * Added support to handle workdir parameter in overlayfs mounts.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 16 Nov 2015 16:49:02 +0000
+
+
+siga-client (3.0.5) precise; urgency=low
 
   * Scan /lib/ufw/*.rules for old configuration files to delete.
 
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 17 Apr 2015 12:44:56 +0100
 
 
-siga-client (3.0~precise4) precise; urgency=low
+siga-client (3.0.4) precise; urgency=low
 
   * Added support for Hardware Enhacement Stack kernels.
 
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Tue, 14 Apr 2015 14:09:03 +0100
 
 
-siga-client (3.0~precise3) precise; urgency=low
+siga-client (3.0.3) precise; urgency=low
 
   * Added conflicts for old dependencies.
 
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Wed, 26 Nov 2014 13:29:27 +0000
 
 
-siga-client (3.0~precise2) precise; urgency=low
+siga-client (3.0.2) precise; urgency=low
 
   * Reload sss daemon after package install to apply new config.
   * Changed priority of package to 'required'.
@@ -42,7 +70,7 @@ siga-client (3.0~precise2) precise; urgency=low
  -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 17 Nov 2014 14:42:06 +0000
 
 
-siga-client (3.0~precise1) precise; urgency=low
+siga-client (3.0.1) precise; urgency=low
 
   * Protected siga-client package to never autoremove.
   * Added CUPSd configuration to allow permissions to SIGA administrators.
