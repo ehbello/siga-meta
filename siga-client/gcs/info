@@ -25,3 +25,6 @@ version: 3.1.2
 changes:
     - Updated allowed IPs in ufw rules.
     - Updated long description.
+    - Fixed bug setting permissions in mountpoints.
+    - Deleted version of cifs-utils dependency.
+    - Revert server="dummy" in pam_mount.conf.xml

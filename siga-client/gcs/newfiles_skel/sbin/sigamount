@@ -16,8 +16,8 @@ LOG="logger -t pam_mount"
 
 OWNER=$1;shift
 MNTPT=$1;shift
-OWNERUID=$(echo $* | sed 's/.*uid=\([^,]\).*/\1/')
-OWNERGID=$(echo $* | sed 's/.*gid=\([^,]\).*/\1/')
+OWNERUID=$(echo $* | sed 's/.*uid=\([^,]\+\).*/\1/')
+OWNERGID=$(echo $* | sed 's/.*gid=\([^,]\+\).*/\1/')
 OPTIONS=$(echo $* | sed 's/ *-o *//g')
 
 if grep -q "^${OWNER}:.*:${MNTPT}:.*" /etc/passwd; then
@@ -114,7 +114,7 @@ if [ -n "${REMOTE}" ]; then
 				mv ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}
 			fi
 			mkdir -p ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
-			chown ${OWNERID}:${OWNERGID} ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
+			chown ${OWNERUID}:${OWNERGID} ${REMOTE_DIR}/private/${DIR} ${LOCAL_DIR}/${DIR}
 			if [ -e ${LOCAL_DIR}/${DIR} ] && [ ! -d ${LOCAL_DIR}/${DIR} ]; then
 				mv ${LOCAL_DIR}/${DIR} ${REMOTE_DIR}/private/${DIR}
 			fi

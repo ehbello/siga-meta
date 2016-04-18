@@ -1,4 +1,4 @@
-cifs-utils (>= 2:5.9)
+cifs-utils
 coreutils
 dosbox
 ethtool

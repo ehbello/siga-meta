@@ -13,7 +13,7 @@
 <debug enable="0" />
 
 		<!-- Volume definitions -->
-<volume uid="1000-9999999" fstype="cifs" path="" mountpoint="~" options="user=%(USER),uid=%(USERUID),gid=%(USERGID),_netdev,serverino" />
+<volume uid="1000-9999999" server="dummy" fstype="cifs" path="" mountpoint="~" options="user=%(USER),uid=%(USERUID),gid=%(USERGID),_netdev,serverino" />
 
 		<!-- pam_mount parameters: General tunables -->
 
