@@ -1,3 +1,14 @@
+siga-client (3.1.2) precise; urgency=low
+
+  * Updated allowed IPs in ufw rules.
+  * Updated long description.
+  * Fixed bug setting permissions in mountpoints.
+  * Deleted version of cifs-utils dependency.
+  * Revert server="dummy" in pam_mount.conf.xml
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 18 Apr 2016 15:41:25 +0100
+
+
 siga-client (3.1.1) xenial; urgency=low
 
   * Changed priority to 'extra'.
