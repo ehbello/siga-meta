@@ -26,7 +26,7 @@ if grep -q "^${OWNER}:.*:${MNTPT}:.*" /etc/passwd; then
 	exit 0
 fi
 
-if mountpoint -q ${MNTPT}; then
+if mountpoint -q ${MNTPT} || mountpoint -q $(echo $MNTPT | sed 's|/home/*$||'); then
 	${LOG} "[${OWNER}] mountpoint ${MNTPT} already mounted. Skipping."
 	exit 0
 fi
@@ -72,7 +72,7 @@ case ${GROUP} in
 		;;
 	ull.es)
 		URI="//ddv.ull.es/${OWNER}"
-		MNTPT=$(echo $MNTPT | sed 's|/home$||')
+		MNTPT=$(echo $MNTPT | sed 's|/home/*$||')
 		;;
 	siga*.stic.ull.es)
 		URI="//${GROUP}/${OWNER}"
