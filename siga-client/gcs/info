@@ -19,14 +19,9 @@ shortdesc: "Dummy package that installs the configuration for a SIGA Client"
 longdesc: "This package is only for a client of a SIGA Classroom. \n WANING: Don't install this at your home. \n It will crash your installation."
 
 # Versión del paquete
-version: 3.1.3
+version: 3.1.4
 
 # Cambios en esta versión
 changes:
-    - Updated long description.
-    - Fixed bug setting permissions in mountpoints.
-    - Deleted version of cifs-utils dependency.
-    - Revert server="dummy" in pam_mount.conf.xml
-    - Replaced allowed IPs by subnet range in ufw rules.
-    - Added rsize=61440 option to mount.cifs to workaround Debian bug 803941
-    - Fix problem detecting mountpoint in PDI/PAS accounts.
+    - Removed FScache support due incompatibility with CIFS internal cache.
+    - Fixed siga-client-preseeds version to >= 3.1

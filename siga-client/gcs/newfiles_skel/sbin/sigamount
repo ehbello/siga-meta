@@ -86,13 +86,6 @@ esac
 
 ${LOG} "[${OWNER}@${URI}] mounting resource to ${MNTPT}"
 
-# Check if FSCache is available in kernel
-if egrep -q "^ *CONFIG_CIFS_FSCACHE=y" /boot/config-`uname -r` && \
- ( egrep -q "^ *CONFIG_FSCACHE=y" /boot/config-`uname -r` || \
- ( egrep -q "^ *CONFIG_FSCACHE=m" /boot/config-`uname -r` && lsmod | grep -q fscache ) ); then
-	OPTIONS="fsc,${OPTIONS}"
-fi
-
 if [ -n "${REMOTE}" ]; then
 		REMOTE_DIR=/tmp/${OWNER}-remote
 		LOCAL_DIR=/tmp/${OWNER}-local

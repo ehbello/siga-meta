@@ -1,3 +1,16 @@
+siga-client (3.1.3) xenial; urgency=low
+
+  * Updated long description.
+  * Fixed bug setting permissions in mountpoints.
+  * Deleted version of cifs-utils dependency.
+  * Revert server="dummy" in pam_mount.conf.xml
+  * Replaced allowed IPs by subnet range in ufw rules.
+  * Added rsize=61440 option to mount.cifs to workaround Debian bug 803941
+  * Fix problem detecting mountpoint in PDI/PAS accounts.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Fri, 29 Jul 2016 15:03:05 +0100
+
+
 siga-client (3.1.2) precise; urgency=low
 
   * Updated allowed IPs in ufw rules.
