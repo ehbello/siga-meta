@@ -1,5 +1,5 @@
 cachefilesd
 ipcalc
 iproute
-siga-client-preseeds (>= ${source:Upstream-Version})
+siga-client-preseeds (>= 3.1)
 ufw
