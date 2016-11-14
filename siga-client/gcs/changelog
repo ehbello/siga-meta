@@ -1,3 +1,10 @@
+siga-client (3.1.2+precise3) precise; urgency=low
+
+  * Workaround for SystemGroup bug of system-config-printer-kde panel.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Thu, 10 Nov 2016 14:45:41 +0000
+
+
 siga-client (3.1.2+precise2) precise; urgency=low
 
   * Fixed regression in mount options. Set security to ntlmv2.
