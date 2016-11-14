@@ -2,7 +2,7 @@
 IPS_ALLOWED="10.209.30.224/29"
 
 ufw --force reset
-for i in /etc/ufw/*.rules /lib/ufw/*.rules; do
+for i in /etc/ufw/*.rules; do
 	ls -1t $i.* | tail -n +2 | xargs rm -f
 done
 ufw default deny incoming

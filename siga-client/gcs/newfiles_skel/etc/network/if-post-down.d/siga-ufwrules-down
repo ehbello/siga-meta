@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# description "Adds a firewall rule to allow SSH connections from the network interface when it goes on."
+# description "Remove the firewall rule to allow SSH connections from the network interface when it goes off."
 # author "Enrique Hernández Bello <quique@osl.ull.es>"
 
 set -e
 
-cp -a /lib/ufw/user.rules /lib/ufw/user.rules.$(date +%Y%m%d_%H%M%S)
+cp -a /etc/ufw/user.rules /etc/ufw/user.rules.$(date +%Y%m%d_%H%M%S)
 
-sed "/in_${IFACE}$/d" -i /lib/ufw/user.rules
-sed "/-i ${IFACE} /d" -i /lib/ufw/user.rules
+sed "/in_${IFACE}$/d" -i /etc/ufw/user.rules
+sed "/-i ${IFACE} /d" -i /etc/ufw/user.rules
 
 /lib/ufw/ufw-init restart

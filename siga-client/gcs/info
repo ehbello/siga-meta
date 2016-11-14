@@ -19,8 +19,10 @@ shortdesc: "Dummy package that installs the configuration for a SIGA Client"
 longdesc: "This package is only for a client of a SIGA Classroom. \n WANING: Don't install this at your home. \n It will crash your installation."
 
 # Versión del paquete
-version: 3.1.5
+version: 3.1.6
 
 # Cambios en esta versión
 changes:
-    - Fixed permissions for CUPS daemon administration.
+    - Rebuild to apply new GCS configuration for diverts paths.
+    - Removed all legacy /lib/ufw/ references.
+    - Removed legacy persistent-net-monitor init script.

@@ -1,0 +1,4 @@
+# Site-specific additions and overrides for usr.sbin.cupsd in a SIGA Client
+# For more details, please see /etc/apparmor.d/local/usr.sbin.cupsd
+/diverts/etc/cups/cupsd.conf* rw,
+/diverts/etc/cups/cups-files.conf* rw,
