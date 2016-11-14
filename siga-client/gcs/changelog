@@ -1,3 +1,12 @@
+siga-client (3.1.6) xenial; urgency=low
+
+  * Rebuild to apply new GCS configuration for diverts paths.
+  * Removed all legacy /lib/ufw/ references.
+  * Removed legacy persistent-net-monitor init script.
+
+ -- Oficina de Software Libre de la Universidad de La Laguna <bardinux@osl.ull.es>  Mon, 14 Nov 2016 18:08:50 +0000
+
+
 siga-client (3.1.4) xenial; urgency=low
 
   * Removed FScache support due incompatibility with CIFS internal cache.
